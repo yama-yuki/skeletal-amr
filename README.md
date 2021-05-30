@@ -26,3 +26,15 @@ $ python
 - pytorch 1.6.0
 - spacy 2.3.2
 - stanza 1.0.1
+
+# Citation
+```
+@inproceedings{yamamoto-etal-2021-dependency-patterns,
+  title     = {Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing},
+  author    = {Yamamoto, Yuki and Matsumoto, Yuji and Watanabe, Taro},
+  booktitle = {Proceedings of *SEM},
+  year      = {2021},
+  url       = {},
+  pages     = {}
+}
+```
