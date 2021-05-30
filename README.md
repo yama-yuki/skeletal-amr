@@ -28,7 +28,7 @@ $ python
 - stanza 1.0.1
 
 # Citation
-```
+```bib
 @inproceedings{yamamoto-etal-2021-dependency-patterns,
   title     = {Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing},
   author    = {Yamamoto, Yuki and Matsumoto, Yuji and Watanabe, Taro},
