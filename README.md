@@ -12,8 +12,14 @@ $ python
 ```
 
 ## Train Classifier
+```
+$ python 
+```
 
 ## Test Classifier
+```
+$ python 
+```
 
 # Requirements
 - python 3.7.7
