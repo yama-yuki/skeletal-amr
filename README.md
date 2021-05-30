@@ -1,5 +1,5 @@
 # skeletal-amr
-Dependency Matching System presented at *SEM
+Implementation of dependency matching system presented at *SEM
 
 # Description
 
