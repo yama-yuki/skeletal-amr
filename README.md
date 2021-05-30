@@ -16,7 +16,7 @@ $ python
 ```sh
 $ python 
 ```
--test
+- test
 ```sh
 $ python 
 ```
