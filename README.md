@@ -7,17 +7,17 @@ Implementation of dependency matching system presented at *SEM
 
 # Usage
 ## Run Dependency Matching System
-```
+```sh
 $ python 
 ```
 
 ## Train Classifier
-```
+```sh
 $ python 
 ```
 
 ## Test Classifier
-```
+```sh
 $ python 
 ```
 
