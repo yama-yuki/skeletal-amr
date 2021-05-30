@@ -12,11 +12,11 @@ $ python
 ```
 
 ## Train Your Own Classifier
-- train
+- Training
 ```sh
 $ python 
 ```
-- test
+- Evaluation
 ```sh
 $ python 
 ```
