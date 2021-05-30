@@ -11,12 +11,12 @@ Implementation of dependency matching system presented at *SEM
 $ python 
 ```
 
-## Train Classifier
+## Train Your Own Classifier
+- train
 ```sh
 $ python 
 ```
-
-## Test Classifier
+-test
 ```sh
 $ python 
 ```
