@@ -1,5 +1,5 @@
 # Dependency Matching System: Complex Sentence to Skeletal AMR
-Code for the Dependency Matching System presented in our STARSEM2021 paper.
+Code for the dependency matching system for complex sentence constructions presented in our STARSEM2021 paper.
 
 Reference:
 - Yuki Yamamoto, Yuji Matsumoto, and Taro Watanabe. 2021. Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing. In Proceedings of the STARSEM.
@@ -16,6 +16,8 @@ Reference:
 
 # Description
 
+> since
+
 # Usage
 ## 0. Setup
 
@@ -29,7 +31,7 @@ pip install -r requirements.txt
 
 ## 1. Run Dependency Matching System
 ```sh
-$ python 
+$ python main.py
 ```
 
 ## 2. Train Your Own Classifier
