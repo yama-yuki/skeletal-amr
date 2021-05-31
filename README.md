@@ -1,4 +1,4 @@
-# Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing
+# Dependency Matching System: Complex Sentence to Skeletal AMR
 Code for the Dependency Matching System presented in our STARSEM2021 paper.
 
 Reference:
