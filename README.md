@@ -18,8 +18,10 @@ Reference:
 
 # Usage
 ## 0. Setup
+
 Via conda:
 ```sh
+git clone https://github.com/yama-yuki/skeletal-amr.git
 conda create -n skel python=3.7
 conda activate skel
 pip install -r requirements.txt
