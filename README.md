@@ -83,7 +83,7 @@ $ python repro/create_data.py -d {data}
 ```
 `-d`: choose data to create (`AMR`, `WIKI`, `MIX`)
 
-Or use ours in `rsc`.
+If you wish to do only the training part, use our data in `rsc`.
 
 2. Training:
 ```sh
