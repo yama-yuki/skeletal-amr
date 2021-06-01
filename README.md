@@ -77,7 +77,7 @@ $ python main.py
 ```
 
 ## For Reproduction
-1. Create Dataset:
+1. Data Creation:
 ```sh
 $ python repro/create_data.py -d {data}
 ```
@@ -85,7 +85,7 @@ $ python repro/create_data.py -d {data}
 
 Or use ours in `rsc`.
 
-2. Train Classifier:
+2. Training:
 ```sh
 $ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_rate} -b {batch_size}
 ```
@@ -99,7 +99,7 @@ $ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_
 
 `-b`: batch size (`16`, `32`, `64`)
 
-3. Evaluate:
+3. Evaluation:
 ```sh
 $ python repro/main.py -t {trained_model}
 ```
