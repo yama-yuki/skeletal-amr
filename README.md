@@ -15,7 +15,15 @@ Citation:
 ```
 
 # Description
-Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier".
+Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first processes an input sentence with lexical and syntactic preprocessing using `SpaCy` and `Stanza`.
+
+## Dependency Matcher
+
+Our matcher is build upon [dependency matching module]() of `SpaCy`, which works in naive manner.
+The dependency patterns are stored in `patterns`.
+
+## Relation Classifier
+
 
 
 Macro and micro F1 scores of our classification models:
@@ -71,13 +79,15 @@ $ python main.py
 ## For Reproduction
 1. Create Dataset:
 ```sh
-$ python repro/create_data.py -d [data]
+$ python repro/create_data.py -d {data}
 ```
 `-d`: choose data to create (`AMR`, `WIKI`, `MIX`)
 
+Or use ours in `rsc`.
+
 2. Train Classifier:
 ```sh
-$ python repro/main.py -p [pretrained_model] -d [data] -e [epochs] -r [learning_rate] -b [batch_size]
+$ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_rate} -b {batch_size}
 ```
 `-p`: choose `bert-base-uncased` for pre-trained BERT or specify pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
 
@@ -91,6 +101,6 @@ $ python repro/main.py -p [pretrained_model] -d [data] -e [epochs] -r [learning_
 
 3. Evaluate:
 ```sh
-$ python repro/main.py -t [trained_model]
+$ python repro/main.py -t {trained_model}
 ```
 `-t`: model to evaluate (e.g. `WIKI-AMR/WIKI_3_3e-05_64_AMR_10_3e-05_32`)
