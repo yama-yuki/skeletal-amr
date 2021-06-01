@@ -16,10 +16,15 @@ Citation:
 
 # Description
 
-> since
+| Models | *F<sub>M</sub>* | *F<sub>m</sub>* |
+|:---|:---:|:---:|
+|BERT→AMR |64.06 |74.29 |
+|BERT→WIKI |47.67 |61.72 |
+|BERT→MIX<sub>8k</sub> |67.12 |77.50 |
+|BERT→WIKI→AMR |72.43 |81.22 |
 
 # Usage
-## 0. Setup
+## Setup
 
 Via conda:
 ```sh
@@ -29,21 +34,26 @@ conda activate skel
 pip install -r requirements.txt
 ```
 
-## 1. Run Dependency Matching System
+## Run Dependency Matching System
 ```sh
 $ python main.py
 ```
 
-## 2. For Reproduction
+## For Reproduction
+Create Dataset:
+`AMR`, `WIKI`, or `MIX`
+```sh
+$ python repro/create_data.py -d [data]
+```
 
 Train your own classifier:
 - Training
 ```sh
-$ python train.py -d [data]
+$ python repro/train.py -d [data] -e [epochs] -r [learning_rate] -b [batch_size]
 ```
 - Evaluation
 ```sh
-$ python test.py
+$ python repro/test.py -m [model]
 ```
 
 ## The code has been tested on ...
