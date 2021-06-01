@@ -79,7 +79,7 @@ $ python repro/create_data.py -d [data]
 ```sh
 $ python repro/main.py -p [pretrained_model] -d [data] -e [epochs] -r [learning_rate] -b [batch_size]
 ```
-`-p`: choose `bert-base-uncased` for pretrained BERT or specify pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
+`-p`: choose `bert-base-uncased` for pre-trained BERT or specify pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
 
 `-d`: data to finetune on (`AMR`, `WIKI`, `MIX`)
 
@@ -93,3 +93,4 @@ $ python repro/main.py -p [pretrained_model] -d [data] -e [epochs] -r [learning_
 ```sh
 $ python repro/main.py -t [trained_model]
 ```
+`-t`: model to evaluate (e.g. `WIKI-AMR/WIKI_3_3e-05_64_AMR_10_3e-05_32`)
