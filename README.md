@@ -15,7 +15,7 @@ Citation:
 ```
 
 # Description
-Our dependency matching system is a pipeline of `Dependency Matcher` and `Relation Classifier`.
+Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier".
 
 
 Macro and micro F1 scores of our classification models:
