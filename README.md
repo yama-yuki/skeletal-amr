@@ -91,7 +91,7 @@ $ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_
 ```
 `-p`: choose `bert-base-uncased` for pre-trained BERT or specify pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
 
-`-d`: data to finetune on (`AMR`, `WIKI`, `MIX`)
+`-d`: data to finetune the model (`AMR`, `WIKI`, `MIX`)
 
 `-e`: training epochs (`3`, `5`, `10`)
 
