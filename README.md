@@ -15,6 +15,8 @@ Citation:
 ```
 
 # Description
+Our dependency matching system is a pipeline of `Dependency Matcher` and `Relation Classifier`.
+
 
 Macro and micro F1 scores of our classification models:
 
@@ -27,8 +29,15 @@ Macro and micro F1 scores of our classification models:
 
 All results are achieved using 5-fold cross validation on `AMR` data.
 
+All models are trained in the below environment:
+```
+OS: Ubuntu 16.04.7 LTS
+GPU: GTX1080 Ti 
+CPU: Xeon E5-2620 v4
+```
+
 # Usage
-## The code has been tested on ...
+The code has been tested on ...
 - python 3.7.7
 - pytorch 1.6.0
 - spacy 2.3.2
@@ -50,7 +59,7 @@ conda activate skel
 pip install -r requirements.txt
 ```
 
-Download models trained on full data:
+Download the best model trained on full data:
 
 [BERT→WIKI→AMR]()
 
@@ -60,18 +69,27 @@ $ python main.py
 ```
 
 ## For Reproduction
-Create Dataset:
-`AMR`, `WIKI`, or `MIX`
+1. Create Dataset:
 ```sh
 $ python repro/create_data.py -d [data]
 ```
+`-d`: choose data to create (`AMR`, `WIKI`, `MIX`)
 
-Train your own classifier:
-- Training
+2. Train Classifier:
 ```sh
-$ python repro/train.py -d [data] -e [epochs] -r [learning_rate] -b [batch_size]
+$ python repro/main.py -p [pretrained_model] -d [data] -e [epochs] -r [learning_rate] -b [batch_size]
 ```
-- Evaluation
+`-p`: choose `bert-base-uncased` for pretrained BERT or specify pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
+
+`-d`: data to finetune on (`AMR`, `WIKI`, `MIX`)
+
+`-e`: training epochs (`3`, `5`, `10`)
+
+`-r`: initial learning rate (`2e-05`, `3e-05`, `5e-05`)
+
+`-b`: batch size (`16`, `32`, `64`)
+
+3. Evaluate:
 ```sh
-$ python repro/test.py -m [model]
+$ python repro/main.py -t [trained_model]
 ```
