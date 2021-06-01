@@ -20,7 +20,7 @@ Our dependency matching system is a pipeline of `Dependency Matcher` and `Relati
 
 Macro and micro F1 scores of our classification models:
 
-| Vanilla Softmax | *F<sub>M</sub>* | *F<sub>m</sub>* | Restricted Softmax | *F<sub>M</sub>* | *F<sub>m</sub>* |ep,lr,batch|
+| Vanilla Softmax | *F<sub>M</sub>* | *F<sub>m</sub>* | Restricted Softmax | *F<sub>M</sub>* | *F<sub>m</sub>* |ep, l_r, b_s|
 |:---|:---:|:---:|:---|:---:|:---:|---:|
 |BERT→AMR |64.06 |74.29 |BERT→AMR+*r* |67.11 |77.18 |10,5e-05,16|
 |BERT→WIKI |47.67 |61.72 |\-|\-|\-|3,2e-05,64|
@@ -59,9 +59,9 @@ conda activate skel
 pip install -r requirements.txt
 ```
 
-Download the best model trained on full data:
+Download the best model trained on full data: 
 
-[BERT→WIKI→AMR]()
+- [BERT→WIKI→AMR]()
 
 ## Run Dependency Matching System
 ```sh
