@@ -34,7 +34,9 @@ pip install -r requirements.txt
 $ python main.py
 ```
 
-## 2. Train Your Own Classifier
+## 2. For Reproduction
+
+Train your own classifier:
 - Training
 ```sh
 $ python train.py -d [data]
