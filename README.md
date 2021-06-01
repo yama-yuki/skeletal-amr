@@ -1,8 +1,8 @@
 # Dependency Matching System: Complex Sentence to Skeletal AMR
-Code for the dependency matching system presented in our STARSEM2021 paper.
+Code for the dependency matching system presented in our \*SEM 2021 paper.
 
 Citation:
-- Yuki Yamamoto, Yuji Matsumoto, and Taro Watanabe. 2021. Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing. In Proceedings of the STARSEM.
+- Yuki Yamamoto, Yuji Matsumoto, and Taro Watanabe. 2021. Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing. In Proceedings of the \*SEM 2021: The Tenth Joint Conference on Lexical and Computational Semantics.
 ```bib
 @inproceedings{yamamoto-etal-2021-skel-amr,
   title     = {Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing},
