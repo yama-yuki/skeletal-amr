@@ -1,5 +1,5 @@
 # Dependency Matching System: Complex Sentence to Skeletal AMR
-Code for the dependency matching system presented in our \*SEM 2021 paper.
+Code and resource for the dependency matching system presented in our \*SEM 2021 paper.
 
 Citation:
 - Yuki Yamamoto, Yuji Matsumoto, and Taro Watanabe. Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing. In Proceedings of the \*SEM 2021: The Tenth Joint Conference on Lexical and Computational Semantics.
@@ -84,7 +84,7 @@ $ python main.py -m {model}
 ```
 
 ## For Reproduction
-0. Data Creation:
+0. Data Creation (Optional):
 
 Skip this part if you want to train on our data in `rsc`.
 ```sh
