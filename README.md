@@ -38,6 +38,8 @@ The dependency patterns are stored in [`patterns`]().
 
 The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
 
+![Example Pattern](pattern.png "Dependency Pattern of because-construction")
+
 ## Relation Classifier
 
 In the pattern dictionary, Skeletal AMR of a subordinator "as" is described as:
