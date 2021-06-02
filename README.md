@@ -26,14 +26,22 @@ The patterns in our current version are described in spaCy v2.0 format and we ar
 
 ## Relation Classifier
 
-In the pattern dictionary, Skeletal AMR of "since" is described as:
+In the pattern dictionary, Skeletal AMR of a subordinator "as" is described as:
 ```
 (v1 / V1
     :cause|time (v2 / V2))
 ```
-meaning that it is ambiguous between CAUSAL and TEMPORAL relations.
+This means that "as" is ambiguous between CAUSAL and TEMPORAL relations. For semantic disambiguation, the classifier takes a pair of clauses (i.e. matrix and subordinate) as input to identify the correct coherence relation between them. 
+```
+subordinator: as
+subordinate clause: the boy seemed reliable
+matrix clause: the girl believed him
+```
+> As the boy seemed reliable, the girl believed him.
 
-Macro and micro F1 scores of our classification models:
+The classification models are trained under 4-class settings (CAUSAL, CONDITIONAL, CONCESSIVE, TEMPORAL). While "Vanilla Softmax" compares probability of all 4 classes, we add restriction rules on softmax ("Restricted Softmax") to only compare relative classes (e.g. for "as", it is a binary classification between CAUSAL and TEMPORAL). We take the restriction method by default.
+
+Macro and micro F1 scores of the models with different approaches:
 
 | Vanilla Softmax | *F<sub>M</sub>* | *F<sub>m</sub>* | Restricted Softmax | *F<sub>M</sub>* | *F<sub>m</sub>* |ep, l_r, b_s|
 |:---|:---:|:---:|:---|:---:|:---:|---:|
@@ -67,14 +75,14 @@ Via conda:
 # Clone repository
 git clone https://github.com/yama-yuki/skeletal-amr.git
 # Create conda environment
-conda create -n skel python=3.7
+conda create -n skele python=3.7
 # Activate conda environment
-conda activate skel
+conda activate skele
 # Install all dependencies
 pip install -r requirements.txt
 ```
 
-Download the best model trained on full data: 
+Download the best performing model trained on full data: 
 
 - [BERT→WIKI→AMR]()
 
@@ -82,6 +90,8 @@ Download the best model trained on full data:
 ```sh
 $ python main.py -m {model}
 ```
+`-m`: specify a model for "Relation Classifier"
+``
 
 ## For Reproduction
 0. Data Creation (Optional):
