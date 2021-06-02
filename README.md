@@ -111,13 +111,13 @@ $ python repro/create_data.py -d MIX
 ```sh
 $ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_rate} -b {batch_size}
 ```
-`-p`: choose `bert-base-uncased` for pre-trained BERT or specify pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
+`-p`: choose `bert-base-uncased` for pre-trained BERT or specify a pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
 
 `-d`: data to finetune the model (`AMR`, `WIKI`, `MIX`)
 
-`-e`: training epochs (`3`, `5`, `10`)
+`-e`: epochs (`3`, `5`, `10`)
 
-`-r`: initial learning rate (`2e-05`, `3e-05`, `5e-05`)
+`-l`: initial learning rate (`2e-05`, `3e-05`, `5e-05`)
 
 `-b`: batch size (`16`, `32`, `64`)
 
