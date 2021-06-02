@@ -23,6 +23,9 @@ Table of contents
       * [Relation Classifier](#relation-classifier)
    * [Demo](#demo)
    * [Usage](#usage)
+      * [Setup](#setup)
+      * [Run Dependency Matching System](#run-dependency-matching-system)
+      * [For Reproduction](#for-reproduction)
 <!--te-->
 
 
@@ -144,7 +147,6 @@ Download the best performing model trained on full data:
 $ python main.py -m {model}
 ```
 `-m`: specify a model for "Relation Classifier"
-``
 
 ## For Reproduction
 0. Data Creation (Optional):
