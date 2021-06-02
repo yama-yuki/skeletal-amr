@@ -1,5 +1,5 @@
 # Dependency Matching System: Complex Sentence to Skeletal AMR
-Code and resource for the dependency matching system presented in our \*SEM 2021 paper. The system converts a complex sentence into a syntax-aware core structure in AMR format.
+Code and resource for the dependency matching system presented in our \*SEM 2021 paper. The system converts a complex sentence into a syntax-aware core structure in AMR format, which may be useful in AMR parsing or any other task.
 
 Citation:
 - Yuki Yamamoto, Yuji Matsumoto, and Taro Watanabe. Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing. In Proceedings of the \*SEM 2021: The Tenth Joint Conference on Lexical and Computational Semantics.
@@ -57,7 +57,7 @@ Our dependency matching system is a pipeline of "Dependency Matcher" and "Relati
     :ARG1 (v1 / V1))
 ```
 
-The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
+- The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
 
 ## Relation Classifier
 
