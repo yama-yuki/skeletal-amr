@@ -14,6 +14,18 @@ Citation:
 }
 ```
 
+Table of contents
+=================
+
+<!--ts-->
+   * [Description](#description)
+      * [Dependency Matcher](#dependency-matcher)
+      * [Relation Classifier](#relation-classifier)
+   * [Demo](#demo)
+   * [Usage](#usage)
+<!--te-->
+
+
 # Description
 Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first processes an input sentence with lexical and syntactic preprocessing using `spaCy` and `Stanza`.
 
