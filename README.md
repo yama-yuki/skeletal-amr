@@ -31,7 +31,7 @@ In the pattern dictionary, Skeletal AMR of a subordinator "as" is described as:
 (v1 / V1
     :cause|time (v2 / V2))
 ```
-This means that "as" is ambiguous between CAUSAL and TEMPORAL relations. For semantic disambiguation, the classifier takes a pair of clauses (i.e. matrix and subordinate) as input to identify the correct coherence relation between them. 
+`:cause|time` means that "as" is ambiguous between CAUSAL and TEMPORAL relations. For semantic disambiguation, the classifier takes a pair of clauses (i.e. matrix and subordinate) as input to identify the correct coherence relation between them. 
 ```
 subordinator: as
 subordinate clause: the boy seemed reliable
@@ -57,6 +57,47 @@ All models are trained in the below environment:
 OS: Ubuntu 16.04.7 LTS
 GPU: GTX1080 Ti 
 CPU: Xeon E5-2620 v4
+```
+
+# Demo
+```
+Sentence: As the boy seemed reliable, the girl believed him.
+-------------------
+Dependency Parsing Input
+-------------------
+0 As as SCONJ IN 3 mark seemed
+1 the the DET DT 2 det boy
+2 boy boy NOUN NN 3 nsubj seemed
+3 seemed seem VERB VBD 8 advcl believed
+4 reliable reliable ADJ JJ 3 xcomp seemed
+5 , , PUNCT , 8 punct believed
+6 the the DET DT 7 det girl
+7 girl girl NOUN NN 8 nsubj believed
+8 believed believe VERB VBD 8 root believed
+9 him he PRON PRP 8 obj believed
+10 . . PUNCT . 8 punct believed
+-------------------
+Checking Copular Patterns
+-------------------
+Matched Pattern_ID: []
+Matched Patterns: []
+-------------------
+Checking Complex Patterns
+-------------------
+Matched Words: ['As', 'seemed', 'believed']
+Matched Pattern_ID: ['3']
+Matched Patterns: ['V1 as V2']
+-------------------
+Disambiguating
+-------------------
+Relation: 'CAUSE'
+-------------------
+Output Skeletal AMR
+-------------------
+(c / cause-01
+    :ARG0 (v2 / V2)
+    :ARG1 (v1 / V1))
+
 ```
 
 # Usage
