@@ -14,7 +14,7 @@ Citation:
 }
 ```
 
-Table of contents
+Table of Contents
 =================
 
 <!--ts-->
@@ -27,7 +27,6 @@ Table of contents
       * [Run Dependency Matching System](#run-dependency-matching-system)
       * [For Reproduction](#for-reproduction)
 <!--te-->
-
 
 # Description
 Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first processes an input sentence with lexical and syntactic preprocessing using `spaCy` and `Stanza`.
