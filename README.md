@@ -15,12 +15,14 @@ Citation:
 ```
 
 # Description
-Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first processes an input sentence with lexical and syntactic preprocessing using `SpaCy` and `Stanza`.
+Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first processes an input sentence with lexical and syntactic preprocessing using `spaCy` and `Stanza`.
 
 ## Dependency Matcher
 
-Our matcher is build upon [dependency matching module]() of `SpaCy`, which works in naive manner.
-The dependency patterns are stored in `patterns`.
+Our matcher is build upon dependency matching module of `spaCy`, which works in naïve manner.
+The dependency patterns are stored in [`patterns`]().
+
+The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
 
 ## Relation Classifier
 
