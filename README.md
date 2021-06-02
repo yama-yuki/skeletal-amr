@@ -49,11 +49,12 @@ Our dependency matching system is a pipeline of "Dependency Matcher" and "Relati
 {"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
 {"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
 {"SPEC":{"NODE_NAME":"s2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
-{"SPEC":{"NODE_NAME":"b","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"because","DEP":"mark"}}]
+{"SPEC":{"NODE_NAME":"a1","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"because","DEP":"mark"}}]
 # ::snt
 # ::amr
-(v1 / V1
-    :cause (v2 / V2))
+(c / cause-01
+    :ARG0 (v2 / V2)
+    :ARG1 (v1 / V1))
 ```
 
 The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
