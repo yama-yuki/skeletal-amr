@@ -162,11 +162,16 @@ Download the best performing model trained on full data:
 - [BERT→WIKI→AMR]()
 
 ## Run Dependency Matching System
+0. Simply run:
 ```sh
 $ python main.py -m {model}
 ```
 `-m`: specify a model for "Relation Classifier"
 
+1. Then provide your input:
+```sh
+Sentence:
+```
 ## For Reproduction
 0. Data Creation (Optional):
 
