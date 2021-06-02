@@ -29,16 +29,32 @@ Table of Contents
 <!--te-->
 
 # Description
-Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first processes an input sentence with lexical and syntactic preprocessing using `spaCy` and `Stanza`.
+Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first preprocesses an input sentence with lexical and syntactic processing using `spaCy` and `Stanza`.
 
 ## Dependency Matcher
 
-Our matcher is built upon dependency matching module of `spaCy`, which works in naïve manner.
-The dependency patterns are stored in [`patterns`]().
+- Our matcher is built upon dependency matching module of `spaCy`, which works in naïve manner.
+- Dependency Patterns are described with corresponding Skeletal AMRs: e.g.
 
 <p align="center">
 <img src="pattern.png" width="300px">
+<img src="skeleton.png" width="300px">
 </p>
+
+```
+# ::id 1.5.1
+# ::const because
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"s2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"b","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"because","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :cause (v2 / V2))
+```
 
 The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
 
