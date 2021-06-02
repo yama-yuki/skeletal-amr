@@ -75,7 +75,7 @@ Download the best model trained on full data:
 
 ## Run Dependency Matching System
 ```sh
-$ python main.py
+$ python main.py -m {model}
 ```
 
 ## For Reproduction
