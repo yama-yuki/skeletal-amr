@@ -42,7 +42,7 @@ Macro and micro F1 scores of our classification models:
 |BERT→MIX<sub>8k</sub> |67.12 |77.50 |BERT→MIX<sub>8k</sub>+*r* |70.76 |80.52 |10,5e-05,16|
 |**BERT→WIKI→AMR** |**72.43** |**81.22** |**BERT→WIKI→AMR+*r*** |**75.65** |**83.94** |10,3e-05,32|
 
-All results are achieved using 5-fold cross validation on `AMR` data.
+All results are achieved using 5-fold cross validation on `AMR` data. Variances are omitted.
 
 All models are trained in the below environment:
 ```
