@@ -33,12 +33,14 @@ Our dependency matching system is a pipeline of "Dependency Matcher" and "Relati
 
 ## Dependency Matcher
 
-Our matcher is build upon dependency matching module of `spaCy`, which works in naïve manner.
+Our matcher is built upon dependency matching module of `spaCy`, which works in naïve manner.
 The dependency patterns are stored in [`patterns`]().
 
-The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
+<p align="center">
+<img src="pattern.png" width="300px">
+</p>
 
-![Example Pattern](pattern.png "Dependency Pattern of because-construction")
+The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
 
 ## Relation Classifier
 
