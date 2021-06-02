@@ -26,7 +26,12 @@ The patterns in our current version are described in spaCy v2.0 format and we ar
 
 ## Relation Classifier
 
-
+In the pattern dictionary, Skeletal AMR of "since" is described as:
+```
+(v1 / V1
+    :cause|time (v2 / V2))
+```
+meaning that it is ambiguous between CAUSAL and TEMPORAL relations.
 
 Macro and micro F1 scores of our classification models:
 
@@ -75,19 +80,24 @@ Download the best model trained on full data:
 
 ## Run Dependency Matching System
 ```sh
-$ python main.py
+$ python main.py -m {model}
 ```
 
 ## For Reproduction
-1. Data Creation:
+0. Data Creation:
+
+Skip this part if you want to train on our data in `rsc`.
 ```sh
-$ python repro/create_data.py -d {data}
+# First, delete the data we provide in rsc
+$ rm -r rsc/.
+# Then, choose the data to create
+$ python repro/create_data.py -d AMR
+$ python repro/create_data.py -d WIKI
+$ python repro/create_data.py -d MIX
 ```
-`-d`: choose data to create (`AMR`, `WIKI`, `MIX`)
+`-d`: `AMR`, `WIKI`, `MIX`
 
-If you wish to do only the training part, use our data in `rsc`.
-
-2. Training:
+1. Training:
 ```sh
 $ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_rate} -b {batch_size}
 ```
@@ -101,7 +111,7 @@ $ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_
 
 `-b`: batch size (`16`, `32`, `64`)
 
-3. Evaluation:
+2. Evaluation:
 ```sh
 $ python repro/main.py -t {trained_model}
 ```
