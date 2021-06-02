@@ -1,11 +1,12 @@
-import numpy as np
 import os
-from sklearn.metrics import classification_report
-from pprint import pprint
 from operator import itemgetter
-from scipy.special import softmax
 from tqdm import tqdm
+from pprint import pprint
 
+from sklearn.metrics import classification_report
+from scipy.special import softmax
+
+import numpy as np
 import torch
 import torch.nn.functional as F
 from torch.utils.data import TensorDataset, DataLoader, SequentialSampler
@@ -246,21 +247,6 @@ def check_predictions(rd, output_name, mode, avg, method, o, r=0):
     if mode == 'check':
 
         eval_path = '../rsc/amr/TEST'
-        '''
-        for cv_count in range(1,6):
-            test_path = eval_path+str(cv_count)+'.csv'
-            print(test_path)
-            model_path = os.path.join(output_name,str(cv_count)+'.pth')
-            print(model_path)
-
-            test_dataloader = load_data(test_path, batch_size=1)
-            model.load_state_dict(torch.load(model_path))
-            t, p = torch_check(test_dataloader, o)
-            print('TRUE')
-            print(t)
-            print('PRED')
-            print(p)
-        '''
         cv_count=2
         test_path = eval_path+str(cv_count)+'.csv'
         print(test_path)
@@ -316,13 +302,10 @@ def check_predictions(rd, output_name, mode, avg, method, o, r=0):
         for i in range(len(p_f)):
             pred_dict[t[i]].append(p_f[i])
 
-        c0 = Counter(pred_dict[0])
+        c0,c1,c2,c3 = Counter(pred_dict[0]),Counter(pred_dict[1]),Counter(pred_dict[2]),Counter(pred_dict[3])
         print(c0)
-        c1 = Counter(pred_dict[1])
         print(c1)
-        c2 = Counter(pred_dict[2])
         print(c2)
-        c3 = Counter(pred_dict[3])
         print(c3)
         #torch_predict(output_name, 'check', avg, method, o, r)
     else:
@@ -354,13 +337,10 @@ def torch_check(test_dataloader, o):
     for i in range(len(true_labels)):
         true_labels_i = true_labels[i]
         y_true_multi.append(true_labels_i[0])
-        #print(predictions[i])
         s_max = softmax(predictions[i])
-        #print(s_max)
         if o == True:
             s_max = restrict(s_max, int(sconj_type_list[i][0]))
-        #print(s_max)
-        pred_labels_i = np.argmax(s_max, axis=1).flatten()#predictions[i]
+        pred_labels_i = np.argmax(s_max, axis=1).flatten()
         y_pred_multi.append(pred_labels_i[0])
     
     d = classification_report(y_true_multi, y_pred_multi, output_dict=True)

@@ -9,9 +9,7 @@ MAX_LEN = 128
 def load_data(data_path, s, batch_size=1):
 
     print('\n'+'Loading: '+str(data_path))
-
     df = pd.read_csv(data_path, delimiter='\t', header=None, names=['SUBORD', 'MATRIX', 'LABEL', 'SCONJ'])
-
     subord = df['SUBORD'].values
     matrix = df['MATRIX'].values
     labels = df['LABEL'].values
@@ -22,12 +20,12 @@ def load_data(data_path, s, batch_size=1):
     print('\n'+'Loading BERT tokenizer...')
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
 
-    ids = []
-    masks=[]
+    ids, masks = [], []
     for sentence_s, sentence_m, feature_s in zip(subord, matrix, sconj):
 
         if s == True:
-            sentence_s = '[unused0] ' + feature_s.lower() + ' [unused0] ' + sentence_s
+            tagged_sconj = '[unused0] ' + feature_s.lower() + ' [unused0] '
+            sentence_s = tagged_sconj + sentence_s
 
         encoded_sentences = tokenizer.encode_plus(
             sentence_s,
@@ -51,12 +49,13 @@ def load_data(data_path, s, batch_size=1):
 
     return dataloader
 
+## For restricting softmax
 def sconj_type(sconj):
     if sconj in {'since','as'}:
-        sconj = 1
+        sconj_t = 1
     elif sconj == 'while' or sconj == 'whilst':
-        sconj = 2
+        sconj_t = 2
     elif sconj == 'when':
-        sconj = 3
-    else: sconj = 0
-    return sconj
+        sconj_t = 3
+    else: sconj_t = 0
+    return sconj_t

@@ -1,9 +1,8 @@
-from torch_train import torch_train
-from torch_evaluate import torch_find_scores, torch_find_best, check_predictions
-
 import os
 from tqdm import tqdm
 
+from torch_train import torch_train
+from torch_evaluate import torch_find_scores, torch_find_best, check_predictions
 
 import argparse
 parser = argparse.ArgumentParser()
@@ -14,11 +13,11 @@ parser.add_argument("-n","--modelname",help="BERT-AMR/3_2e-05_16",type=str)
 parser.add_argument("-d","--dirname",help="BERT-AMR",type=str,default=None)
 parser.add_argument("-t","--target",help="BERT-WIKI/3_2e-05_64/0",type=str)
 
-## For MIX
+## For MIX models
 parser.add_argument("--mix",help="1,2,3,4,5",type=int,default=1)
 parser.add_argument("--mixid",help="1,2,3, ..., 25",type=int,default=1)
 
-## Hyperparameter
+## Training Hyperparameter
 parser.add_argument("-e","--epoch",help="epochs:3,5,10",type=int)
 parser.add_argument("-l","--lr",help="learning_rate:2e-5,3e-5,5e-5",type=float)
 parser.add_argument("-b","--batch",help="batch_size:16,32,64",type=int)
@@ -40,7 +39,7 @@ def main():
     if args.mode == 'train':
         if args.data == 'amr':
             if args.target:
-                print('WIKI-AMR')
+                print('WIKI-AMR') ## BERT-WIKI-AMR
                 model_to_tune = str(args.target)
                 model_name = str(args.epoch)+'_'+str(args.lr)+'_'+str(args.batch)
                 for cv_num in tqdm(range(1,6)):
@@ -54,7 +53,7 @@ def main():
 
         elif args.data == 'mix':
             if args.target:
-                print('WIKI-MIX')
+                print('WIKI-MIX') ## BERT-WIKI-MIX
                 model_to_tune = str(args.target)
                 model_name = str(args.epoch)+'_'+str(args.lr)+'_'+str(args.batch)
                 for cv_num in tqdm(range(1,6)):
@@ -107,6 +106,7 @@ def main():
     elif args.mode == 'test':
         print('---Evaluate on TEST---')
         if args.dirname == 'BERT-MIX':
+            ## SEED & CV
             output_name = os.path.join('torch_models', args.dirname)
             avg = 'simple'
             method = 'MIX_CV'
@@ -116,14 +116,16 @@ def main():
             output_name = os.path.join('torch_models', args.modelname)
             print(output_name)
             if args.modelname.split('/')[0] in model_A:
+                ## CV
                 avg = 'simple'
                 method = 'CV'
                 results = torch_find_scores(rd, output_name, args.mode, avg, method, o)
             elif args.modelname.split('/')[0] in model_W:
+                ## SEED
                 method = 'SEED'
                 results = torch_find_scores(rd, output_name, args.mode, args.averaging, method, o)
     
-    elif args.mode == 'check':
+    elif args.mode == 'check': ## to check confusion matrices
         print('---Check Predictions on TEST---')
         output_name = os.path.join('torch_models', args.modelname)
         print(output_name)
