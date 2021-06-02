@@ -111,7 +111,6 @@ Output Skeletal AMR
 (c / cause-01
     :ARG0 (v2 / V2)
     :ARG1 (v1 / V1))
-
 ```
 
 # Usage
