@@ -37,8 +37,8 @@ Our dependency matching system is a pipeline of "Dependency Matcher" and "Relati
 - Dependency Patterns are described with corresponding Skeletal AMRs: e.g.
 
 <p align="center">
-<img src="pattern.png" width="300px">
-<img src="skeleton.png" width="300px">
+<img src="etc/pattern.png" width="300px">
+<img src="etc/skeleton.png" width="300px">
 </p>
 
 ```
