@@ -188,7 +188,7 @@ $ python repro/create_data.py -d MIX
 
 1. Training:
 ```sh
-$ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_rate} -b {batch_size}
+$ python repro/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
 ```
 `-p`: choose `bert-base-uncased` for pre-trained BERT or specify a pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
 
