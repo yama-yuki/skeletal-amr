@@ -29,7 +29,7 @@ Table of Contents
 <!--te-->
 
 # Description
-Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first preprocesses an input sentence with lexical and syntactic processing using `spaCy` and `Stanza`.
+Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first preprocesses an input sentence with lexical and syntactic processing using [`spaCy`](https://spacy.io/) and [`Stanza`](https://stanfordnlp.github.io/stanza/).
 
 ## Dependency Matcher
 
