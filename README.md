@@ -190,7 +190,7 @@ $ python repro/create_data.py -d MIX
 ```sh
 $ python repro/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
 ```
-`-p`: choose `bert-base-uncased` for pre-trained BERT or specify a pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
+`--target`: specify a pre-finetuned model for post-finetuning approach (e.g. `BERT-WIKI/3_2e-05_64`)
 
 `-d`: data to finetune the model (`AMR`, `WIKI`, `MIX`)
 
@@ -201,8 +201,10 @@ $ python repro/main.py --mode train --data {data} -e {epochs} -l {learning_rate}
 `-b`: batch size (`16`, `32`, `64`)
 
 ```sh
-# Train BERT-AMR
-python main.py -m train --data amr -e 10 -l 5e-05 -b 16
+# BERT→AMR
+python main.py --mode train --data amr -e 10 -l 5e-05 -b 16
+# BERT→WIKI→AMR
+python main.py --mode train --data amr --target BERT-WIKI/3_2e-05_64/0 -e 10 -l 3e-05 -b 32
 ```
 
 2. Evaluation:
