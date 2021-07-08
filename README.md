@@ -188,7 +188,7 @@ $ python repro/create_data.py -d MIX
 
 1. Training:
 ```sh
-$ python repro/main.py --mode train --data {data} --target {<OPTIONAL>} -e {epochs} -l {learning_rate} -b {batch_size} -f
+$ python repro/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
 ```
 
 `--data`: train data for finetuning the model (`AMR`, `WIKI`, `MIX`)
