@@ -200,6 +200,11 @@ $ python repro/main.py --mode train --data {data} -e {epochs} -l {learning_rate}
 
 `-b`: batch size (`16`, `32`, `64`)
 
+```sh
+# Train BERT-AMR
+python main.py -m train --data amr -e 10 -l 5e-05 -b 16
+```
+
 2. Evaluation:
 ```sh
 $ python repro/main.py -t {trained_model}
