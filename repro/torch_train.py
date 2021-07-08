@@ -19,9 +19,11 @@ formatter = Formatter('%(asctime)s - %(name) - %(Levelname)s - %(message)s')
 sh = StreamHandler()
 sh.setFormatter(formatter)
 logger.addHandler(sh)
+'''
 fh = FileHandler('test.log', 'a+')
 fh.setFormatter(formatter)
 logger.addHandler(fh)
+'''
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
@@ -32,13 +34,13 @@ else:
     device = torch.device("cpu")
 
 #MAX_LEN = 128 
-SAVE_DIR = 'torch_models'
+SAVE_DIR = '../torch_models'
 
 def format_time(elapsed):
     elapsed_rounded = int(round((elapsed)))
     return str(datetime.timedelta(seconds=elapsed_rounded))
 
-## To fix seed
+## Fix random seed
 def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
@@ -48,8 +50,7 @@ def set_seed(seed):
     torch.backends.cudnn.deterministic = True
 
 ## Assign paths for train data and models
-
-def make_path(model_name, data, s, mix, mixid, cv_num, model_to_tune):
+def make_path(model_name, data, s, cv_num, mix, mixid, model_to_tune):
     '''
     INPUT
     model_name: give name to the model
@@ -72,7 +73,7 @@ def make_path(model_name, data, s, mix, mixid, cv_num, model_to_tune):
     if data == 'amr':
         #data_path = '../rsc/amr/TRAIN'+sconj+str(cv_num)+'.csv'
         data_path = '../rsc/amr/TRAIN'+str(cv_num)+'.csv'
-        seed = 0 #0,1,42,1337,31337
+        seed = 0
 
         if model_to_tune == 'bert-base-uncased':
             dir_name = 'BERT-AMR'+sconj
@@ -90,7 +91,7 @@ def make_path(model_name, data, s, mix, mixid, cv_num, model_to_tune):
         mix_name = str(mix)+'_'+str(mixid)
         #data_path = '../rsc/mix'+sconj+'/'+mix_name+'_'+str(cv_num)+'.csv'
         data_path = '../rsc/mix'+'/'+mix_name+'_'+str(cv_num)+'.csv'
-        seed = 0 #0,1,42,1337,31337
+        seed = 0
 
         if model_to_tune == 'bert-base-uncased':
             dir_name = 'BERT-MIX'+sconj
@@ -119,14 +120,11 @@ def make_path(model_name, data, s, mix, mixid, cv_num, model_to_tune):
         print('NO DATA Specified') 
         sys.exit()
 
-    return data_path, save_path, seed
+    return data_path, save_path, seed, model_to_tune
 
 ## Training loop
-def torch_train(model_name, data, s, mix, mixid, epochs, lr, batch_size, cv_num, model_to_tune='bert-base-uncased'):
+def train_loop(s, epochs, lr, batch_size, data_path, save_path, model_to_tune):
     # based on https://github.com/huggingface/transformers/blob/5bfcd0485ece086ebcbed2d008813037968a9e58/examples/run_glue.py#L128
-
-    data_path, save_path, seed = make_path(model_name, data, s, mix, mixid, cv_num, model_to_tune)
-    set_seed(seed)
 
     model = BertForSequenceClassification.from_pretrained(
         'bert-base-uncased',
@@ -187,4 +185,9 @@ def torch_train(model_name, data, s, mix, mixid, epochs, lr, batch_size, cv_num,
     print("Training complete!")
     torch.cuda.empty_cache()
     sys.stdout.flush()
+
+def torch_train(model_name, data, s, epochs, lr, batch_size, cv_num, mix=1, mixid=1, model_to_tune='bert-base-uncased'):
+    data_path, save_path, seed, model_to_tune = make_path(model_name, data, s, cv_num, mix, mixid, model_to_tune)
+    set_seed(seed)
+    train_loop(s, epochs, lr, batch_size, data_path, save_path, model_to_tune)
 

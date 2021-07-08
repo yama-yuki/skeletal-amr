@@ -13,7 +13,7 @@ from torch.utils.data import TensorDataset, DataLoader, SequentialSampler
 from transformers import BertTokenizer, BertForSequenceClassification
 
 from torch_dataloader import load_data
-from evaluate import d_score, average, var, avg2dict
+from utils import d_score, average, var, avg2dict
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
@@ -50,7 +50,7 @@ def torch_eval(test_dataloader, o):
         predictions.append(logits)
         true_labels.append(label_ids)
         sconj_type_list.append(sconj_ids)
-    print('Prediction DONE.')
+    #print('Prediction DONE.')
 
     y_true_multi = []
     y_pred_multi = []
@@ -68,8 +68,6 @@ def torch_eval(test_dataloader, o):
 
     d = classification_report(y_true_multi, y_pred_multi,output_dict=True)
     return d
-
-#sconj_type_list[i]
 
 s_type=[]
 def restrict(s_max, sconj_type):
@@ -105,9 +103,9 @@ def torch_predict(output_name, mode, avg, method, o, r):
 
         for cv_count in range(1,6):
             test_path = eval_path+str(cv_count)+'.csv'
-            print(test_path)
+            print('Test Split: '+test_path)
             model_path = os.path.join(output_name,str(cv_count)+'.pth')
-            print(model_path)
+            print('Model: '+model_path)
 
             test_dataloader = load_data(test_path, s=False, batch_size=1)
             model.load_state_dict(torch.load(model_path))
@@ -120,9 +118,9 @@ def torch_predict(output_name, mode, avg, method, o, r):
         for id_count in range(1,6):
             for cv_count in range(1,6):
                 test_path = eval_path+str(cv_count)+'.csv'
-                print(test_path)
+                print('Test Split: '+test_path)
                 model_path = os.path.join(output_name,str(r)+'_'+str(id_count)+'_10_5e-05_16',str(cv_count)+'.pth')
-                print(model_path)
+                print('Model: '+model_path)
 
                 test_dataloader = load_data(test_path, s=False, batch_size=1)
                 model.load_state_dict(torch.load(model_path))
@@ -158,11 +156,11 @@ def torch_predict(output_name, mode, avg, method, o, r):
                 for seed_num in range(5):
                     for cv_count in range(1,6):
                         test_path = eval_path+str(cv_count)+'.csv'
-                        print(test_path)
+                        print('Test Split: '+test_path)
                         model_path = os.path.join(output_name,str(seed_num)+'.pth')
-                        print(model_path)
+                        print('Model: '+model_path)
 
-                        test_dataloader = load_data(test_path, batch_size=1)
+                        test_dataloader = load_data(test_path, s=False, batch_size=1)
                         model.load_state_dict(torch.load(model_path))
                         d = torch_eval(test_dataloader, o)
                         d_list.append(d)
@@ -204,6 +202,16 @@ def torch_predict(output_name, mode, avg, method, o, r):
             
             else: print('---Mode NOT Specified---')
 
+    else:
+        if mode == 'pdtb':
+            cv_count=0
+            test_path = '../rsc/pdtb/'+method+'.csv'
+            model_path = os.path.join(output_name,str(cv_count)+'.pth')
+            test_dataloader = load_data(test_path, s=False, batch_size=1)
+            model.load_state_dict(torch.load(model_path))
+            d = torch_eval(test_dataloader, o)
+            d_list.append(d)
+
 def torch_find_scores(rd, output_name, mode, avg, method, o=False, r=0):
     torch_predict(output_name, mode, avg, method, o, r)
     scores = []
@@ -211,6 +219,10 @@ def torch_find_scores(rd, output_name, mode, avg, method, o=False, r=0):
         pprint(d)
         s = d_score(d)
         scores.append(s)
+    if mode == 'pdtb':
+        pprint(scores)
+        return
+
     avg = average(scores, d_list)
     final_d = avg2dict(rd, avg)
 
@@ -218,8 +230,10 @@ def torch_find_scores(rd, output_name, mode, avg, method, o=False, r=0):
         micro = final_d['micro']
         result = micro
     elif mode == 'test':
+        print('---Averaged Scores---')
         result = final_d
         pprint(final_d)
+        print('---Variances---')
         var_dict = var(rd, scores, d_list)
         pprint(var_dict)
     else:

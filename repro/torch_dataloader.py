@@ -8,7 +8,8 @@ MAX_LEN = 128
 
 def load_data(data_path, s, batch_size=1):
 
-    print('\n'+'Loading: '+str(data_path))
+    if data_path.split('/')[3][:4] != 'TEST':
+        print('\n'+'Loading: '+str(data_path))
     df = pd.read_csv(data_path, delimiter='\t', header=None, names=['SUBORD', 'MATRIX', 'LABEL', 'SCONJ'])
     subord = df['SUBORD'].values
     matrix = df['MATRIX'].values
@@ -17,7 +18,8 @@ def load_data(data_path, s, batch_size=1):
     sconj = df['SCONJ'].values
     sconj_t = [sconj_type(s.lower()) for s in sconj]
 
-    print('\n'+'Loading BERT tokenizer...')
+    if data_path.split('/')[3][:4] != 'TEST':
+        print('\n'+'Loading BERT tokenizer...')
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
 
     ids, masks = [], []
