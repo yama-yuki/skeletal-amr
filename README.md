@@ -29,7 +29,7 @@ Table of Contents
 <!--te-->
 
 # Description
-Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first preprocesses an input sentence with lexical and syntactic processing using `spaCy` and `Stanza`.
+Our dependency matching system is a pipeline of "Dependency Matcher" and "Relation Classifier". The pipeline first preprocesses an input sentence with lexical and syntactic processing using [`spaCy`](https://spacy.io/) and [`Stanza`](https://stanfordnlp.github.io/stanza/).
 
 ## Dependency Matcher
 
@@ -188,17 +188,30 @@ $ python repro/create_data.py -d MIX
 
 1. Training:
 ```sh
-$ python repro/main.py -p {pretrained_model} -d {data} -e {epochs} -r {learning_rate} -b {batch_size}
+$ python repro/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
 ```
-`-p`: choose `bert-base-uncased` for pre-trained BERT or specify a pre-finetuned model (e.g. `BERT-WIKI/3_2e-05_64`)
 
-`-d`: data to finetune the model (`AMR`, `WIKI`, `MIX`)
+`--data`: train data for finetuning the model (`AMR`, `WIKI`, `MIX`)
 
 `-e`: epochs (`3`, `5`, `10`)
 
 `-l`: initial learning rate (`2e-05`, `3e-05`, `5e-05`)
 
 `-b`: batch size (`16`, `32`, `64`)
+
+(OPTIONAL)
+
+`--target`: specify a pre-finetuned model for post-finetuning approach (e.g. `BERT-WIKI/3_2e-05_64`)
+
+`-f`: for training a model on a full data (not cv splits)
+
+```sh
+## Hints
+# BERT→AMR
+python main.py --mode train --data amr -e 10 -l 5e-05 -b 16
+# BERT→WIKI→AMR
+python main.py --mode train --data amr --target BERT-WIKI/3_2e-05_64/0 -e 10 -l 3e-05 -b 32
+```
 
 2. Evaluation:
 ```sh
