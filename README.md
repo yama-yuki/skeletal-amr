@@ -87,13 +87,6 @@ Macro and micro F1 scores of the models with different approaches:
 
 All results are achieved using 5-fold cross validation on `AMR` data. Variances are omitted.
 
-All models are trained in the below environment:
-```
-OS: Ubuntu 16.04.7 LTS
-GPU: GTX1080 Ti 
-CPU: Xeon E5-2620 v4
-```
-
 # Demo
 ```
 Sentence: As the boy seemed reliable, the girl believed him.
