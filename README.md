@@ -6,11 +6,11 @@ Citation:
 ```bib
 @inproceedings{yamamoto-etal-2021-skel-amr,
   title     = {Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing},
-  author    = {Yamamoto, Yuki and Matsumoto, Yuji and Watanabe, Taro},
-  booktitle = {Proceedings of *SEM},
+  author    = {Yuki Yamamoto, Yuji Matsumoto, Taro Watanabe},
+  booktitle = {Proceedings of *SEM 2021: The Tenth Joint Conference on Lexical and Computational Semantics},
   year      = {2021},
-  url       = {},
-  pages     = {}
+  url       = {https://aclanthology.org/2021.starsem-1.20},
+  pages     = {212–221}
 }
 ```
 
