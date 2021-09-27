@@ -1,4 +1,4 @@
 README.md
-*.pth
-rsc
-scripts
+torch_models/*
+rsc/*
+scripts/*
