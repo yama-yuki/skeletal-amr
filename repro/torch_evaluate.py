@@ -1,3 +1,4 @@
+
 import os
 from operator import itemgetter
 from tqdm import tqdm
@@ -261,7 +262,7 @@ def check_predictions(rd, output_name, mode, avg, method, o, r=0):
     if mode == 'check':
 
         eval_path = '../rsc/amr/TEST'
-        cv_count=2
+        cv_count=0
         test_path = eval_path+str(cv_count)+'.csv'
         print(test_path)
         model_path = os.path.join(output_name,str(cv_count)+'.pth')

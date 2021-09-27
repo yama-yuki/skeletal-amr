@@ -13,14 +13,12 @@ CUDA_VISIBLE_DEVICES=0 nohup python main.py -m train --data amr --target BERT-WI
 CUDA_VISIBLE_DEVICES=0 python main.py -m test -n BERT-AMR/10_5e-05_16 -r -rs
 CUDA_VISIBLE_DEVICES=0 python main.py -m test -n BERT-WIKI/3_2e-05_64 -r -rs
 
+## CHECK
+CUDA_VISIBLE_DEVICES=0 python main.py -m check -n BERT-AMR/10_5e-05_16 -r -rs
+
 ## PDTB
 CUDA_VISIBLE_DEVICES=0 python main.py -m pdtb -n BERT-AMR/10_5e-05_16 -r
 CUDA_VISIBLE_DEVICES=0 python main.py -m pdtb -n WIKI-AMR/WIKI_3_2e-05_64_AMR_10_3e-05_32 -r
-
-args.modelname
-results = torch_find_scores(args.rounding, output_name, args.mode, avg='simple', method='CV', args.restrict_softmax)
-
-
 '''
 
 import os
@@ -172,6 +170,7 @@ def main():
                 method = 'SEED'
                 results = torch_find_scores(args.rounding, output_name, args.mode, args.averaging, method, args.restrict_softmax)
     
+    ## CHECK
     elif args.mode == 'check': ## to check confusion matrices
         print('---Check Predictions on TEST---')
         output_name = os.path.join('../torch_models', args.modelname)
