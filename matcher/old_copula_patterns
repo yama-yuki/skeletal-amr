@@ -1,0 +1,33 @@
+# ::id M
+# ::const Matrix = [S1 be1 NN1/JJ1]
+# ::pat
+[{"SPEC":{"NODE_NAME":"nj1"},"PATTERN":{"TAG": {"REGEX": "^N|^J"}}},
+{"SPEC":{"NODE_NAME":"be1","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"lemma":"be","TAG": {"REGEX": "^V"},"DEP":"cop"}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"s2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}}]
+# ::snt
+# ::amr
+
+# ::id S
+# ::const  Subordinate = [S2 be2 NN2/JJ2]
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"nj2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^N|^J", "DEP":"advcl"}}},
+{"SPEC":{"NODE_NAME":"be2","NBOR_RELOP":">","NBOR_NAME":"nj2"},"PATTERN":{"lemma":"be","TAG": {"REGEX": "^V"},"DEP":"cop"}},
+{"SPEC":{"NODE_NAME":"s2","NBOR_RELOP":">","NBOR_NAME":"nj2"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}}]
+# ::snt
+# ::amr
+
+# ::id MS
+# ::const Matrix = [S1 be1 NN1/JJ1], Subordinate = [S2 be2 NN2/JJ2]
+# ::pat
+[{"SPEC":{"NODE_NAME":"nj1"},"PATTERN":{"TAG": {"REGEX": "^N|^J"}}},
+{"SPEC":{"NODE_NAME":"be1","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"lemma":"be","TAG": {"REGEX": "^V"},"DEP":"cop"}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"nj2","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"TAG": {"REGEX": "^N|^J", "DEP":"advcl"}}},
+{"SPEC":{"NODE_NAME":"be2","NBOR_RELOP":">","NBOR_NAME":"nj2"},"PATTERN":{"lemma":"be","TAG": {"REGEX": "^V"},"DEP":"cop"}},
+{"SPEC":{"NODE_NAME":"s2","NBOR_RELOP":">","NBOR_NAME":"nj2"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}}]
+# ::snt
+# ::amr

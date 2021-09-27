@@ -1,0 +1,8 @@
+# ::id ALL
+# ::const S1 be1 NN1/JJ1
+# ::pat
+[{"SPEC":{"NODE_NAME":"nj1"},"PATTERN":{"TAG": {"REGEX": "^N|^J"}}},
+{"SPEC":{"NODE_NAME":"be1","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"lemma":"be","TAG": {"REGEX": "^V"},"DEP":"cop"}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"nj1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}}]
+# ::snt
+# ::amr

@@ -1,0 +1,813 @@
+# ::id 1
+# ::const V1 after V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"after","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time (a / after
+        :op1 (v2 / V2)))
+
+# ::id 10
+# ::const V1 before V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"b","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"before","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time (b / before
+        :op1 (v2 / V2)))
+
+# ::id 2
+# ::const V1 although V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"although","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+# ::id 3
+# ::const V1 as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :cause|time (v2 / V2))
+
+# ::id 3
+# ::const adj. as V2, V1
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"j2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^J"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"j2"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt Amusing as she is , and frivolous as she can seem , this is a serious person with some difficult memories .
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+# ::id 3.1
+# ::const V1 as if V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"a"},"PATTERN":{"lemma":"if","DEP":"fixed"}}]
+# ::snt My thoughts go through those yellowing pages of history, as if I saw Emperor Kangxi.
+# ::amr
+(v1 / V1
+    :manner (r / resemble-01
+        :ARG2 (v2 /V2)))
+
+# ::id 3.2
+# ::const V1 just as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"j","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"just","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :ARG1-of (e / equal-01
+        :ARG2 (v2 / V2)))
+
+# ::id 3.3
+# ::const V1 inasmuch as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"inasmuch","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 3.4
+# ::const V1 insofar as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"insofar","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 5
+# ::const V1 as long as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"l","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"long","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"l"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a1","NBOR_RELOP":">","NBOR_NAME":"l"},"PATTERN":{"lemma":"as","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"a2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (a / as-long-as
+        :op1 (v2 / V2)))
+
+# ::id 6
+# ::const V1 as much as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"m","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"much","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"m"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a1","NBOR_RELOP":">","NBOR_NAME":"m"},"PATTERN":{"lemma":"as","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"a2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt As much as we had a strong physical attraction and could talk for hours etc, he wasn't committed to me, and couldn't ever be while he was still living with his wife.
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+# ::id 7
+# ::const V1 as soon as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"soon","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a1","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"lemma":"as","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"a2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt as soon as conventional oil reserves run out, the US and Canada will have by far the biggest reserves in the world in the form of Oil Shale etc.
+# ::amr
+(v1 / V1
+    :time (a / as-soon-as
+        :op1 (v2 / V2)))
+
+# ::id 9
+# ::const V1 because V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"because","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :cause (v2 / V2))
+
+# ::id 14
+# ::const V1 if V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"if","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 14.1
+# ::const V1 even if V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"e","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"even","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"if","DEP":"mark"}}]
+# ::snt Even if there is consumer resistance at first , a wine that wins high ratings from the critics will eventually move .
+# ::amr
+(v1 / V1
+    :concession (e / even-if
+        :op1 (v2 / V2)))
+
+# ::id 14.2
+# ::const V1 only if V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"if","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"only","DEP":"advmod"}}]
+# ::snt You can only fight a hundred wars without defeat only if you know yourself and the enemy well.
+# ::amr
+(v1 / V1
+    :condition (v2 / V2
+        :mod (o / only)))
+
+# ::id 16
+# ::const V1 if and when V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"if","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"and","DEP":"cc"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"although","DEP":"advmod"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 19
+# ::const V1 in order that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"in","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"i"},"PATTERN":{"lemma":"order","DEP":"fixed"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :purpose (v2 / V2))
+
+# ::id 21
+# ::const V1 lest V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"l","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"lest","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :purpose (v2 / V2 
+        :polarity -))
+
+# ::id 24
+# ::const V1 now that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"n","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"now","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt Now that she's in power, she likes the nuclear option. / Now that Vice President Xi has visited America, the direction for the Sino-American relationship has become the focus of world attention.
+# ::amr
+(v1 / V1
+    :cause (v2 / V2
+        :time (n / now)))
+
+# ::id 26
+# ::const V1 once V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"once","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
+
+# ::id 30
+# ::const V1 since V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"since","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :cause|time (v2 / V2))
+
+# ::id 31
+# ::const V1 so that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"so","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"lemma":"that","DEP":"fixed"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :purpose (v2 / V2))
+
+# ::id 32
+# ::const V1 suppos(e/ing) that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"suppose","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 32.1
+# ::const V1 provid(ed/ing) that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"provide","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 32.2
+# ::const V1 assum(e/ing) that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"assume","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"a"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 32.2.1
+# ::const V1 considering that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"c","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"consider","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"c"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :cause|condition|concession (c / consider-01
+        :ARG1(v2 / V2)))
+
+# ::id 32.2.2
+# ::const V1 given that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"g","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"give","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"g"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 32.2.3
+# ::const V1 grant(ed/ing) that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"g","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"grant","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"g"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 32.2.4
+# ::const V1 see(n/ing) that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"see","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 32.2.1
+# ::const V1 on the assumption that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"assumption","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"a"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"a"},"PATTERN":{"lemma":"on","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"t1","NBOR_RELOP":">","NBOR_NAME":"a"},"PATTERN":{"lemma":"the","DEP":"det"}},
+{"SPEC":{"NODE_NAME":"t2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 33
+# ::const V1 with the condition that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"c","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"condition","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"c"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"c"},"PATTERN":{"lemma":"with","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"t1","NBOR_RELOP":">","NBOR_NAME":"c"},"PATTERN":{"lemma":"the","DEP":"det"}},
+{"SPEC":{"NODE_NAME":"t2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 34
+# ::const V1 on condition that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"c","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"condition","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"c"},"PATTERN":{"lemma":"on","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"c"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 60
+# ::const V1 except that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"e","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"except","DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"e"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :ARG2-of (e / except
+        :ARG1 (v2 / V2)))
+
+# ::id 61*
+# ::const V1 for all that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"f","NBOR_RELOP":">","NBOR_NAME":"t"},"PATTERN":{"lemma":"for","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"t"},"PATTERN":{"lemma":"all","DEP":"det:predet"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+
+# ::id 35
+# ::const V1 though V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"though","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+# ::id 35.1
+# ::const V1 even though V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"e","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"even","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"though","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+# ::id 35.2
+# ::const V1 as though V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"a"},"PATTERN":{"lemma":"though","DEP":"mark"}}]
+# ::snt She looked at me as though I was nuts.
+# ::amr
+(v1 / V1
+    :manner (v2 / V2))
+
+# ::id 36
+# ::const V1 till V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"till","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time|during (u / until
+        :op1 (v2 / V2)))
+
+# ::id 38
+# ::const V1 until V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"u","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"until","DEP":"mark"}}]
+# ::snt The owners said "NOT" to pay until my business had picked up.
+# ::amr
+(v1 / V1
+    :time|during (u / until
+        :op1 (v2 / V2)))
+
+# ::id 37
+# ::const V1 unless V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"u","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"unless","DEP":"mark"}}]
+# ::snt It certainly hadn't made it into my paper unless I skimmed over it.
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 39
+# ::const V1 when V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"when","DEP":"advmod"}}]
+# ::snt Isn't surrender required (ethically) when civilian lives are at stake?
+# ::amr
+(v1 / V1
+    :condition|time (v2 / V2))
+
+# ::id 39.1
+# ::const V1 only when V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"when","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"w"},"PATTERN":{"lemma":"only","DEP":"advmod"}}]
+# ::snt 
+# ::amr
+(v1 / V1
+    :condition|time (v2 / V2))
+
+# ::id 40
+# ::const V1 whenever V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"whenever","DEP":"advmod"}}]
+# ::snt Police say that's a standard practice whenever a TASER is used.
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
+
+# ::id 41*
+# ::const V1 where V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"where","DEP":"advmod"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
+
+# ::id 41.1
+# ::const V1 whereas V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"whereas","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :contrast|concession (v2 / V2))
+
+# ::id 41.2
+# ::const V1 wherever V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"wherever","DEP":"advmod"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :location (v2 / V2)
+        :mod (a / any))
+
+# ::id 41.3
+# ::const V1 whereupon V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"whereupon","DEP":"advmod"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
+
+# ::id 45
+# ::const V1 whether V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"whether","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :ARG1-of (r / regardless-91
+        :ARG2 (v2 / V2)))
+
+# ::id 47
+# ::const V1 while/whilst V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma": {"REGEX": "while|whilst"},"DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time|contrast (v2 / V2))
+
+# ::id 52
+# ::const V1 in case V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"in","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"c","NBOR_RELOP":">","NBOR_NAME":"i"},"PATTERN":{"lemma":"case","DEP":"fixed"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :condition (v2 / V2))
+
+# ::id 53
+# ::const by the time
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"t1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"time","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"t1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"acl:relcl"}},
+{"SPEC":{"NODE_NAME":"b","NBOR_RELOP":">","NBOR_NAME":"t1"},"PATTERN":{"lemma":"by","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"t2","NBOR_RELOP":">","NBOR_NAME":"t1"},"PATTERN":{"lemma":"the","DEP":"det"}}]
+# ::snt By the time Mr. Snyder did his google search he knew from media sources WBC had been presented
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
+
+# ::id 55
+# ::const V1 whether or not V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"whether","DEP":"mark"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"w"},"PATTERN":{"lemma":"or","DEP":"cc"}},
+{"SPEC":{"NODE_NAME":"n","NBOR_RELOP":">","NBOR_NAME":"w"},"PATTERN":{"lemma":"not","DEP":"fixed"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :ARG1-of (r / regardless-91
+        :ARG2 (v2 / V2)))
+
+# ::id 56
+# ::const V1 as far as V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"f","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"far","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"a1","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"as","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"a2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"as","DEP":"mark"}}]
+# ::snt As far as we 're concerned , we 're waiting for the dust to settle 
+# ::amr
+(v1 / V1
+    :concession (a / as-far-as
+        :op1 (v2 /V2)))
+
+# ::id 57
+# ::const V1 inspite of the fact that  V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"f","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"fact","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"spite","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"lemma":"in","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"of","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t1","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"the","DEP":"det"}},
+{"SPEC":{"NODE_NAME":"t2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+# ::id 58
+# ::const V1 despite the fact that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"f","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"fact","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"d","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"despite","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t1","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"the","DEP":"det"}},
+{"SPEC":{"NODE_NAME":"t2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :concession (v2 / V2))
+
+# ::id 59
+# ::const V1 due to the fact that V2
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"f","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"fact","DEP":"obl"}},
+{"SPEC":{"NODE_NAME":"d","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"due","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"to","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"to","DEP":"case"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"t1","NBOR_RELOP":">","NBOR_NAME":"f"},"PATTERN":{"lemma":"the","DEP":"det"}},
+{"SPEC":{"NODE_NAME":"t2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"that","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :cause (v2 / V2))
+
+# ::id 70
+# ::const [Present Participial] V2-ing, V1
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG"},"DEP":"advcl"}}]
+# ::snt Going to the well of the chamber , Mr. Panetta demanded the costs be fully counted .
+# ::amr
+(v1 / V1
+    :cause|condition|concession|time (v2 / V2))
+
+# ::id 71
+# ::const [Past Participial] V2-p.p., V1
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":",", "DEP":"punct"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBN"}, "DEP":"advcl"}}]
+# ::snt Seen from a distance, the building looks quite new.
+# ::amr
+(v1 / V1
+    :time|cause|condition|concession (v2 / V2))
+
+# ::id 71.1
+# ::const [Past Participial] Having V2-p.p., V1
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":",", "DEP":"punct"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBN"}, "DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"h","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"have", "TAG": {"REGEX": "VBG"}, "DEP":"aux"}}]
+# ::snt Having seen no hope from Xu Ming, Wang Peirong then could only post the relevant problems online.
+# ::amr
+(v1 / V1
+    :time|cause|condition|concession (v2 / V2))
+
+# ::id 91
+# ::const [Correrative] The X-er Vx, The Y-er Vy
+# ::pat
+[{"SPEC":{"NODE_NAME":"vy"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"vx","NBOR_RELOP":">","NBOR_NAME":"vy"},"PATTERN":{"TAG":{"REGEX":"^V"},"DEP":"dep"}},
+{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"vy"},"PATTERN":{"lemma":",","DEP":"punct"}},
+{"SPEC":{"NODE_NAME":"X","NBOR_RELOP":">","NBOR_NAME":"vx"},"PATTERN":{"TAG":{"REGEX":"RBR|JJR"}}},
+{"SPEC":{"NODE_NAME":"tx","NBOR_RELOP":">","NBOR_NAME":"X"},"PATTERN":{"lemma":"the","DEP":"det"}},
+{"SPEC":{"NODE_NAME":"Y","NBOR_RELOP":">","NBOR_NAME":"vy"},"PATTERN":{"TAG":{"REGEX":"RBR|JJR"}}},
+{"SPEC":{"NODE_NAME":"ty","NBOR_RELOP":">","NBOR_NAME":"Y"},"PATTERN":{"lemma":"the","DEP":"det"}}]
+# ::snt The more we think about it, the more we suspect her.
+# ::amr
+(c / correlate-91
+    :ARG1 (m1 / more
+        :ARG3-of (h1 / have-degree-91
+            :ARG1 (vx / Vx)
+            :ARG2 (x / X)))
+    :ARG2 (m2 / more
+        :ARG3-of (h2 / have-degree-91
+            :ARG2 (vy / Vy)
+            :ARG2 (y / Y))))
+
+# ::id 92
+# ::const [Correrative] no sooner ... than
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":{"REGEX":"^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"s","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"soon","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"n","NBOR_RELOP":">","NBOR_NAME":"s"},"PATTERN":{"lemma":"no","DEP":"det"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"than","DEP":"case"}}]
+# ::snt No sooner did I post about it than The FOXNEWS manifest their nonsense.
+# ::amr
+(v1 / V1
+    :time (a / after
+        :op1 (v2 / V2)
+        :quant (i / immediate)))
+
+# ::id 93
+# ::const [Correrative] more ... than
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":{"REGEX":"^V"},"DEP":"dep"}},
+{"SPEC":{"NODE_NAME":"m","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"more","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"than","DEP":"case"}}]
+# ::snt 
+# ::amr
+
+
+# ::id 94
+# ::const [Correrative] barely ... when
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":{"REGEX":"^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"b","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"barely","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"when","DEP":"advmod"}}]
+# ::snt she barely seems to notice when her husband disappears for drug-seeking
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
+
+# ::id 95
+# ::const [Correrative] hardly ... than
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":{"REGEX":"^V"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"h","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"lemma":"hardly","DEP":"advmod"}},
+{"SPEC":{"NODE_NAME":"t","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"than","DEP":"advmod"}}]
+# ::snt 
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
