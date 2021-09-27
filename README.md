@@ -60,7 +60,7 @@ Our dependency matching system is a pipeline of "Dependency Matcher" and "Relati
 - The patterns in our current version are described in spaCy v2.0 format and we are now working on to support v3.0's SEMGREX format.
 
 ## Relation Classifier
-
+Used for semantic disambiguation of Skeletal AMRs.
 In the pattern dictionary, Skeletal AMR of a subordinator "as" is described as:
 ```
 (v1 / V1
