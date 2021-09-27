@@ -1,4 +1,3 @@
 README.md
 torch_models/*
-rsc/*
-scripts/*
+data/*
