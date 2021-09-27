@@ -1,3 +1,2 @@
 README.md
-torch_models/*
-data/*
+*.pth
