@@ -33,7 +33,7 @@ Our dependency matching system is a pipeline of "Dependency Matcher" and "Relati
 
 ## Dependency Matcher
 
-- Our matcher is built upon dependency matching module of `spaCy`, which works in naïve manner.
+- The matcher is built upon dependency matching module of `spaCy`, which works in naïve manner.
 - Dependency Patterns are described with corresponding Skeletal AMRs: e.g.
 
 <p align="center">
