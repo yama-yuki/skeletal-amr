@@ -171,9 +171,7 @@ $ sh run_matcher.sh -m {model} -f {input_file}
 
 Skip this part if you want to train on our data in `rsc`.
 ```sh
-# First, delete the data we provide in rsc
-$ rm -r rsc/.
-# Then, choose the data to create
+# Choose the type of data to create
 $ python repro/create_data.py -d AMR
 $ python repro/create_data.py -d WIKI
 $ python repro/create_data.py -d MIX
