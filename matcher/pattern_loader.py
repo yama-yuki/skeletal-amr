@@ -1,4 +1,6 @@
-#data = 'patterns'
+from pprint import pprint
+
+data = 's_patterns'
 
 ##(1) patternをidごとにdatum_listへ
 
@@ -53,3 +55,11 @@ def create_list(datum_list):
                 amr_temp.append(d)
     return id_list, const_list, pattern_list, amr_list
 
+def load_dict(id_list, amr_list):
+        pattern_dict = {key: val for key, val in zip(id_list, amr_list)}
+        return pattern_dict
+
+if __name__ == '__main__':
+    datum_list = pattern_datum_list(data)
+    id_list, const_list, pattern_list, amr_list = create_list(datum_list)
+    pprint(amr_list)

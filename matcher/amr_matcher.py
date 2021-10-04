@@ -37,7 +37,7 @@ def pipeline(input_snt):
 
 def tree_match(doc, pattern):
     matcher = DependencyMatcher(nlp.vocab)
-    matcher.add('pattern', None, pattern)
+    matcher.add('s_pattern', None, pattern)
     matches = matcher(doc)
     return matches
 
