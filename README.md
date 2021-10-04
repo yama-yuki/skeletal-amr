@@ -164,7 +164,7 @@ $ sh run_matcher.sh -m {model} -f {input_file}
 
 (OPTIONAL)
 
-`-f`: add path for matching a text file
+`-f`: add a input file path to match sentences in the file
 
 ## For Reproduction
 0. Data Creation (Optional):
