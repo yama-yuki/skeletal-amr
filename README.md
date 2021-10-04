@@ -169,7 +169,7 @@ $ sh run_matcher.sh -m {model} -f {input_file}
 ## For Reproduction
 0. Data Creation (Optional):
 
-Skip this part if you want to train on our data in `rsc`.
+Skip this part if you want to train on our data in `data`.
 ```sh
 # Choose the type of data to create
 $ python repro/create_data.py -d AMR
