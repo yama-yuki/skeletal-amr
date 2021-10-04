@@ -1,7 +1,5 @@
 from pprint import pprint
 
-data = 's_patterns'
-
 ##(1) patternをidごとにdatum_listへ
 
 def pattern_datum_list(data):
@@ -60,6 +58,7 @@ def load_dict(id_list, amr_list):
         return pattern_dict
 
 if __name__ == '__main__':
+    data = 'pattern_dict'
     datum_list = pattern_datum_list(data)
     id_list, const_list, pattern_list, amr_list = create_list(datum_list)
     pprint(amr_list)

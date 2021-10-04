@@ -18,8 +18,6 @@ count = 0
 true = 0
 sconj_list = []
 
-pic_path = '/home/cl/yuki-yama/train/code/pickle/'+role+'.binaryfile'
-
 def sconj_pic(pic_path):
     global sconj_list
     with open(pic_path, 'wb') as p:
@@ -29,15 +27,12 @@ def sconj_pic(pic_path):
 def check_mode(mode):
     amr_data = '/home/cl/yuki-yama/train/data/align_all'
     out_path = '/home/cl/yuki-yama/train/data/align_'+role+'.txt'
-
     test = 'test'
     test_out = 'test_out'
 
     if mode == 'test':
         amr_data = test
         out_path = test_out
-    elif mode == 'amr':
-        return amr_data, out_path
     return amr_data, out_path
 
 def main():
@@ -136,4 +131,5 @@ def if_true(g, state, f):
     return False
 
 if __name__ == '__main__':
+    pic_path = '/home/cl/yuki-yama/train/code/pickle/'+role+'.binaryfile'
     main()

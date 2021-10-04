@@ -37,7 +37,7 @@ def pipeline(input_snt):
 
 def tree_match(doc, pattern):
     matcher = DependencyMatcher(nlp.vocab)
-    matcher.add('s_pattern', None, pattern)
+    matcher.add('pattern_dict', None, pattern)
     matches = matcher(doc)
     return matches
 
@@ -284,7 +284,7 @@ def matching(input_snt):
 
     results = []
     p_count=0
-    data = os.path.join(this_dir, 's_patterns')
+    data = os.path.join(this_dir, 'pattern_dict')
     datum_list = pattern_datum_list(data)
     id_list, const_list, pattern_list, amr_list = create_list(datum_list)
     ## id_list: ['1.1', '1.2', '1.3', ...]
