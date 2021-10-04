@@ -166,13 +166,6 @@ $ sh run_matcher.sh -m {model} -f {input_file}
 
 `-f`: add path for matching a text file
 
-1.a
-Output will be written in output.skele
-
-1.b provide your input sentence:
-```sh
-Sentence:
-```
 ## For Reproduction
 0. Data Creation (Optional):
 
