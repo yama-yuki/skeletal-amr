@@ -155,13 +155,21 @@ Download the best performing model trained on full data:
 - [BERT→WIKI→AMR]()
 
 ## Run Dependency Matching System
+
 0. Simply run:
 ```sh
-$ python main.py -m {model}
+$ sh run_matcher.sh -m {model} -f {input_file}
 ```
 `-m`: specify a model for "Relation Classifier"
 
-1. Then provide your input:
+(OPTIONAL)
+
+`-f`: add path for matching a text file
+
+1.a
+Output will be written in output.skele
+
+1.b provide your input sentence:
 ```sh
 Sentence:
 ```
