@@ -2,5 +2,4 @@
 
 #conda activate skele
 
-python match.py:
-            -m=
+python 
