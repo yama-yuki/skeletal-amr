@@ -167,17 +167,6 @@ $ sh scripts/run_matcher.sh -m {model} -f {input_file}
 `-f`: add a file path for input sentences
 
 ## For Reproduction
-0. Data Creation (Optional):
-
-Skip this part if you want to train on our data in `data`.
-```sh
-# Choose the type of data to create
-$ python data/repro/create_data.py -d AMR
-$ python data/repro/create_data.py -d WIKI
-$ python data/repro/create_data.py -d MIX
-```
-`-d`: `AMR`, `WIKI`, `MIX`
-
 1. Training:
 ```sh
 $ python classifier/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
