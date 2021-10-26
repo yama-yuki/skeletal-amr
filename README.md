@@ -172,9 +172,9 @@ $ sh run_matcher.sh -m {model} -f {input_file}
 Skip this part if you want to train on our data in `data`.
 ```sh
 # Choose the type of data to create
-$ python repro/create_data.py -d AMR
-$ python repro/create_data.py -d WIKI
-$ python repro/create_data.py -d MIX
+$ python data/repro/create_data.py -d AMR
+$ python data/repro/create_data.py -d WIKI
+$ python data/repro/create_data.py -d MIX
 ```
 `-d`: `AMR`, `WIKI`, `MIX`
 
