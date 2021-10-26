@@ -1,6 +1,7 @@
 
-import os
+import os, sys
 from operator import itemgetter
+from collections import Counter
 from tqdm import tqdm
 from pprint import pprint
 
@@ -18,10 +19,7 @@ from utils import d_score, average, var, avg2dict
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
-    #print('There are %d GPU(s) available.' % torch.cuda.device_count())
-    #print('We will use the GPU:', torch.cuda.get_device_name(0))
 else:
-    #print('No GPU available, using the CPU instead.')
     device = torch.device("cpu")
 
 model = BertForSequenceClassification.from_pretrained(
@@ -67,7 +65,7 @@ def torch_eval(test_dataloader, o):
         pred_labels_i = np.argmax(s_max, axis=1).flatten()#predictions[i]
         y_pred_multi.append(pred_labels_i[0])
 
-    d = classification_report(y_true_multi, y_pred_multi,output_dict=True)
+    d = classification_report(y_true_multi, y_pred_multi, output_dict=True)
     return d
 
 s_type=[]
@@ -166,42 +164,9 @@ def torch_predict(output_name, mode, avg, method, o, r):
                         d = torch_eval(test_dataloader, o)
                         d_list.append(d)
             
-            elif avg == 'soft-vote':
-                pass
-                '''
-                for cv_count in range(1,6):
-                    test_path = eval_path+str(cv_count)+'.csv'
-                    print(test_path)
-                    test_data = []
-                    y_true_multi = []
-
-                    with open(test_path, mode='r', encoding='utf-8') as f:
-                        reader = csv.reader(f, delimiter='\t')
-                        for row in reader:
-                            test_data.append(row[:2])
-                            y_true_multi.append(int(row[2]))
-
-                    model = ClassificationModel('bert', os.path.join(output_name,str(0)), args={})
-                    _, raw_outputs_0 = model.predict(test_data)
-                    model = ClassificationModel('bert', os.path.join(output_name,str(1)), args={})
-                    _, raw_outputs_1 = model.predict(test_data)
-                    model = ClassificationModel('bert', os.path.join(output_name,str(2)), args={})
-                    _, raw_outputs_2 = model.predict(test_data)
-                    model = ClassificationModel('bert', os.path.join(output_name,str(3)), args={})
-                    _, raw_outputs_3 = model.predict(test_data)
-                    model = ClassificationModel('bert', os.path.join(output_name,str(4)), args={})
-                    _, raw_outputs_4 = model.predict(test_data)
-
-                    y_pred_ave = (softmax(raw_outputs_0, axis=1)+softmax(raw_outputs_1, axis=1)+softmax(raw_outputs_2, axis=1)+softmax(raw_outputs_3, axis=1)+softmax(raw_outputs_4, axis=1))/5
-                    soft_vote = [np.argmax(i) for i in y_pred_ave]
-                    y_pred_multi = soft_vote
-
-                    y_pred_multi, _ = model.predict(test_data)
-                    d = classification_report(y_true_multi, y_pred_multi, output_dict=True)
-                    d_list.append(d)
-                    '''
-            
-            else: print('---Mode NOT Specified---')
+            else:
+                print('---Mode NOT Specified---')
+                sys.exit()
 
     else:
         if mode == 'pdtb':
@@ -255,8 +220,6 @@ def torch_find_best(rd, dir_name, avg, method):
         results.append(result)
     results.sort(key=itemgetter(1), reverse=True)
     return results
-
-from collections import Counter
 
 def check_predictions(rd, output_name, mode, avg, method, o, r=0):
     if mode == 'check':

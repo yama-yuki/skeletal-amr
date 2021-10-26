@@ -1,13 +1,10 @@
 # sent_id = 1
-# text = He went to the park after he finished his work.
+# text = He came here before it was noon.
 1	He	he	PRON	PRP	PronType=prs	2	nsubj	_	_
-2	went	go	VERB	VBD	VerbForm=fin|Tense=past	0	root	_	_
-3	to	to	ADP	IN	_	5	case	_	_
-4	the	the	DET	DT	_	5	det	_	_
-5	park	park	NOUN	NN	Number=sing	2	obl	_	_
-6	after	after	SCONJ	IN	_	8	mark	_	_
-7	he	he	PRON	PRP	PronType=prs	8	nsubj	_	_
-8	finished	finish	VERB	VBD	VerbForm=fin|Tense=past	2	advcl	_	_
-9	his	he	PRON	PRP$	PronType=prs|Poss=yes	10	nmod:poss	_	_
-10	work	work	NOUN	NN	Number=sing	8	obj	_	SpaceAfter=No
-11	.	.	PUNCT	.	PunctType=peri	2	punct	_	SpaceAfter=No
+2	came	come	VERB	VBD	VerbForm=fin|Tense=past	0	root	_	_
+3	here	here	ADV	RB	Degree=pos	2	advmod	_	_
+4	before	before	SCONJ	IN	_	7	mark	_	_
+5	it	it	PRON	PRP	PronType=prs	7	nsubj	_	_
+6	was	be	AUX	VBD	VerbForm=fin|Tense=past	7	cop	_	_
+7	noon	noon	NOUN	NN	Number=sing	2	advcl	_	SpaceAfter=No
+8	.	.	PUNCT	.	PunctType=peri	2	punct	_	SpaceAfter=No

@@ -808,8 +808,7 @@
 [{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
 {"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
 {"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
-{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG"},"DEP":"advcl"}},
-{"SPEC":{"NODE_NAME":"s2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}}]
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG"},"DEP":"advcl"}}]
 # ::snt Going to the well of the chamber , Mr. Panetta demanded the costs be fully counted .
 # ::amr
 (v1 / V1

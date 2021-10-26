@@ -1,0 +1,14 @@
+#SENT 0
+#SKELE
+(v1 / V1
+    :time (a / after
+        :op1 (v2 / V2)))
+
+
+#SENT 1
+#SKELE
+(v1 / V1
+    :time (b / before
+        :op1 (v2 / V2)))
+
+
