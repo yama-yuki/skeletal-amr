@@ -156,9 +156,9 @@ Download the best performing model trained on full data:
 
 ## Run Dependency Matching System
 
-0. Simply run:
+0. Run:
 ```sh
-$ sh run_matcher.sh -m {model} -f {input_file}
+$ sh scripts/run_matcher.sh -m {model} -f {input_file}
 ```
 `-m`: specify a model for "Relation Classifier"
 
