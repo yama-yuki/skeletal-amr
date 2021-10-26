@@ -180,7 +180,7 @@ $ python repro/create_data.py -d MIX
 
 1. Training:
 ```sh
-$ python repro/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
+$ python classifier/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
 ```
 
 `--data`: train data for finetuning the model (`AMR`, `WIKI`, `MIX`)
@@ -207,6 +207,6 @@ python main.py --mode train --data amr --target BERT-WIKI/3_2e-05_64/0 -e 10 -l 
 
 2. Evaluation:
 ```sh
-$ python repro/main.py -t {trained_model}
+$ python classifier/main.py -t {trained_model}
 ```
 `-t`: model to evaluate (e.g. `WIKI-AMR/WIKI_3_3e-05_64_AMR_10_3e-05_32`)
