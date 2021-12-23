@@ -1,5 +1,5 @@
 README.md
-classifier/torch_models/*
-data/*
+classifier/torch_models/
+data/
 matcher/temp.conllu
-scripts/demo/*
+scripts/demo/
