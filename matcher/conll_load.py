@@ -3,7 +3,6 @@ import os, sys
 this_dir, this_filename = os.path.split(__file__)
 conll_data = os.path.join(this_dir, 'temp.conllu')
 
-import spacy
 from spacy.tokens import Doc
 from stanza.utils.conll import CoNLL
 from stanza.models.common.doc import Document
@@ -14,10 +13,12 @@ from spacy_conll import init_parser
 #conll = [[['1', 'Test', '_', 'NOUN', 'NN', 'Number=Sing', '0', '_', '_', 'start_char=0|end_char=4'], ['2', 'sentence', '_', 'NOUN', 'NN', 'Number=Sing', '1', '_', '_', 'start_char=5|end_char=13'], ['3', '.', '_', 'PUNCT', '.', '_', '2', '_', '_', 'start_char=13|end_char=14']]] # conll is List[List[List]], representing each token / word in each sentence in the document
 #dicts = CoNLL.convert_conll(conll) # dicts is List[List[Dict]], representing each token / word in each sentence in the document
 
+'''
 nlp = init_parser("stanza",
                   "en",
                   parser_opts={"use_gpu": True, "verbose": False},
                   include_headers=True)
+'''
 
 def convert(conll_data, change_idx, child_idx):
     snt,tmp=[],[]
