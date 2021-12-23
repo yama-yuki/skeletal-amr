@@ -161,6 +161,7 @@ Download the best performing model trained on full data:
 $ python scripts/pipeline.py -m {model} -f {input_file}
 ```
 `-m`: model path for "Relation Classifier"
+
 `-f`: file path for input sentences
 
 ## For Reproduction
