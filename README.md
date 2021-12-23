@@ -160,16 +160,18 @@ Put it into `scripts/demo`
 
 0. Run:
 ```sh
+##run a demo
+$ sh run.sh
+```
+
+or
+
+```sh
 $ python scripts/pipeline.py -m {model} -f {input_file}
 ```
 `-m`: model path for "Relation Classifier"
 
 `-f`: file path for input sentences
-
-```sh
-##for pretrained model
-$ sh run.sh
-```
 
 ## For Reproduction
 0. Preparation:
