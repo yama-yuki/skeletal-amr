@@ -161,7 +161,7 @@ Put it into `scripts/demo`
 0. Run:
 ```sh
 ##run a demo
-$ sh run.sh
+$ sh scripts/run.sh
 ```
 
 or
