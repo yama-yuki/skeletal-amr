@@ -184,11 +184,10 @@ $ python classifier/main.py --mode train --data {data} -e {epochs} -l {learning_
 `-f`: for training a model on a full data (not cv splits)
 
 ```sh
-## Hints
 # BERT→AMR
-python main.py --mode train --data amr -e 10 -l 5e-05 -b 16
+python classifier/main.py --mode train --data amr -e 10 -l 5e-05 -b 16
 # BERT→WIKI→AMR
-python main.py --mode train --data amr --target BERT-WIKI/3_2e-05_64/0 -e 10 -l 3e-05 -b 32
+python classifier/main.py --mode train --data amr --target BERT-WIKI/3_2e-05_64/0 -e 10 -l 3e-05 -b 32
 ```
 
 2. Evaluation:
