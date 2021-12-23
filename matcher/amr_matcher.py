@@ -9,6 +9,7 @@ from spacy_conll import init_parser, ConllFormatter
 from .pattern_loader import pattern_datum_list, create_list
 from .conll_load import convert, conll_to_doc, process, conll_data
 
+#stanza.download("en")
 nlp = init_parser("stanza",
                   "en",
                   parser_opts={"use_gpu": True, "verbose": False},
