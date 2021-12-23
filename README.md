@@ -154,7 +154,7 @@ Download the best performing model:
 
 - [BERT→WIKI→AMR](https://drive.google.com/file/d/1F1H8OSACNWEVXDhF2LmIzEz12lh6FlXD/view?usp=sharing)
 
-Put it into `classifier/torch_models/WIKI_AMR/pretrained`
+Put it into `scripts/demo`
 
 ## Run Dependency Matching System
 
