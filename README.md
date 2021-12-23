@@ -152,7 +152,7 @@ pip install -r requirements.txt
 
 Download the best performing model: 
 
-- [BERT→WIKI→AMR]()
+- [BERT→WIKI→AMR](https://drive.google.com/file/d/1F1H8OSACNWEVXDhF2LmIzEz12lh6FlXD/view?usp=sharing)
 
 ## Run Dependency Matching System
 
