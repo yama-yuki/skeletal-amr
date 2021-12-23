@@ -150,7 +150,7 @@ conda activate skele
 pip install -r requirements.txt
 ```
 
-Download the best performing model trained on full data: 
+Download the best performing model: 
 
 - [BERT→WIKI→AMR]()
 
