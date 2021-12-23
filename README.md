@@ -158,13 +158,10 @@ Download the best performing model trained on full data:
 
 0. Run:
 ```sh
-$ sh scripts/run_matcher.sh -m {model} -f {input_file}
+$ python scripts/pipeline.py -m {model} -f {input_file}
 ```
-`-m`: specify a model for "Relation Classifier"
-
-(OPTIONAL)
-
-`-f`: add a file path for input sentences
+`-m`: model path for "Relation Classifier"
+`-f`: file path for input sentences
 
 ## For Reproduction
 1. Training:
