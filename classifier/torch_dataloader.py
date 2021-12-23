@@ -11,6 +11,7 @@ def load_data(data_path, s, batch_size=1):
     if data_path.split('/')[3][:4] != 'TEST':
         print('\n'+'Loading: '+str(data_path))
     df = pd.read_csv(data_path, delimiter='\t', header=None, names=['SUBORD', 'MATRIX', 'LABEL', 'SCONJ'])
+    #print(df)
     subord = df['SUBORD'].values
     matrix = df['MATRIX'].values
     labels = df['LABEL'].values

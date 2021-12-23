@@ -105,7 +105,7 @@
 (v1 / V1
     :time (v2 / V2))
 
-# ::id 1.9
+# ::id 1.9.*
 # ::const since
 # ::pat
 [{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
@@ -118,7 +118,7 @@
 (v1 / V1
     :cause|time (v2 / V2))
 
-# ::id 1.10
+# ::id 1.10.*
 # ::const as
 # ::pat
 [{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
@@ -158,8 +158,8 @@
 (v1 / V1
     :condition (v2 / V2))
 
-# ::id 1.13
-# ::const when
+# ::id 1.13.*
+# ::const when*
 # ::pat
 [{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
 {"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
@@ -184,7 +184,7 @@
 (v1 / V1
     :time (v2 / V2))
 
-# ::id 1.15*
+# ::id 1.15.*
 # ::const where
 # ::pat
 [{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
@@ -251,7 +251,7 @@
     :ARG1-of (r / regardless-91
         :ARG2 (v2 / V2)))
 
-# ::id 1.20
+# ::id 1.20.*
 # ::const while/whilst
 # ::pat
 [{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},

@@ -34,7 +34,7 @@ else:
     device = torch.device("cpu")
 
 #MAX_LEN = 128 
-SAVE_DIR = '../torch_models'
+SAVE_DIR = 'torch_models'
 
 def format_time(elapsed):
     elapsed_rounded = int(round((elapsed)))
@@ -56,8 +56,8 @@ def make_path(model_name, data, s, cv_num, mix, mixid, model_to_tune):
     model_name: give name to the model
     data: which data to use for training
     s: to encode sconj (e.g. 'because') or not
-    mix, mixid: MIX split IDs for MIX models
     cv_num: which split to use for train/eval
+    mix, mixid: MIX split IDs for MIX models
     model_to_tune: model to finetune ('bert-base-uncased' OR the model specified)
     ---
     OUTPUT
@@ -72,25 +72,31 @@ def make_path(model_name, data, s, cv_num, mix, mixid, model_to_tune):
 
     if data == 'amr':
         #data_path = '../rsc/amr/TRAIN'+sconj+str(cv_num)+'.csv'
-        data_path = '../rsc/amr/TRAIN'+str(cv_num)+'.csv'
+        data_path = '../data/amr/TRAIN'+str(cv_num)+'.csv'
         seed = 0
 
         if model_to_tune == 'bert-base-uncased':
             dir_name = 'BERT-AMR'+sconj
             save_dir = os.path.join(SAVE_DIR, dir_name, model_name)
             os.makedirs(save_dir, exist_ok=True)
-            save_path = os.path.join(save_dir, str(cv_num)+'.pth')
+            if cv_num == 0:
+                save_path = os.path.join(save_dir, 'full.pth')
+            else:
+                save_path = os.path.join(save_dir, str(cv_num)+'.pth')
         else: 
             dir_name = 'WIKI-AMR'+sconj
             save_dir = os.path.join(SAVE_DIR, dir_name, 'WIKI_'+str(model_to_tune.split('/')[1])+'_AMR'+sconj+'_'+model_name)
             os.makedirs(save_dir, exist_ok=True)
-            save_path = os.path.join(save_dir, str(cv_num)+'.pth')
+            if cv_num == 0:
+                save_path = os.path.join(save_dir, 'full.pth')
+            else:
+                save_path = os.path.join(save_dir, str(cv_num)+'.pth')
             model_to_tune = os.path.join(SAVE_DIR, model_to_tune+'.pth')
     
     elif data == 'mix':
         mix_name = str(mix)+'_'+str(mixid)
         #data_path = '../rsc/mix'+sconj+'/'+mix_name+'_'+str(cv_num)+'.csv'
-        data_path = '../rsc/mix'+'/'+mix_name+'_'+str(cv_num)+'.csv'
+        data_path = '../data/mix'+'/'+mix_name+'_'+str(cv_num)+'.csv'
         seed = 0
 
         if model_to_tune == 'bert-base-uncased':
@@ -106,7 +112,7 @@ def make_path(model_name, data, s, cv_num, mix, mixid, model_to_tune):
             model_to_tune = os.path.join(SAVE_DIR, model_to_tune+'.pth')
     
     elif data == 'wiki':
-        data_path = '../rsc/wiki/merged'+sconj+'/train_dummy.csv'
+        data_path = '../data/wiki/'+sconj+'/train.csv'
         seed_num = cv_num
         seed_list = [0, 1, 42, 1337, 31337]
         seed = seed_list[int(seed_num)]
