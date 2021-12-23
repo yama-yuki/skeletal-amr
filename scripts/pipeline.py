@@ -1,5 +1,5 @@
 '''
-python pipeline.py --model_name WIKI-AMR/WIKI_3_3e-05_64_AMR_10_3e-05_32 --file_path demo.txt
+python pipeline.py --model_name WIKI-AMR/WIKI_3_3e-05_64_AMR_10_3e-05_32 --file_path in.sents
 '''
 
 import argparse, os, sys
@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import torch
 from transformers import BertForSequenceClassification
 #from torch_dataloader import load_data
-from model import load_data
+from data_utils import load_data
 
 from matcher.amr_matcher import matching
 from matcher.pattern_loader import pattern_datum_list, create_list, load_dict
@@ -38,25 +38,42 @@ def run_matcher(sents):
     print('Loaded Pattern Dictionary\n')
     print('Start Dependency Matching\n')
 
-    skele_list, conll_list = [], []
+    skele_list, conll_list, clause_pair_list = [], [], []
 
     for sent in sents:
         results, _, conll, _ = matching(sent)
 
-        tmp = []
+        tmp_s, tmp_c = [], []
         if results:
-            tmp.append(sent)
+            tmp_s.append(sent)
             conll_list.append(conll)
             for i,result in enumerate(results):
+                print(result)
                 matched_id = results[i][0]
                 skeleton = amr_list[matched_id+1]
+                skele_id = id_list[matched_id+1]
+                sp = skele_id.split(".")
+                if int(sp[0])==1:
+                    ##result = (0, [['went', 'I', 'ate', 'I', 'after']], [[1, 0, 7, 6, 5]])
+                    tree_match_id = result[2][0]
+                    sub_i, mat_v, sub_v = tree_match_id[-1], tree_match_id[0], tree_match_id[2]
+                    if mat_v < sub_v:
+                        clause_pair = (sent[:sub_i], sent[sub_i+1:])
+                    else:
+                        clause_pair = (sent[sub_i+1:], sent[:sub_i])
+                    
+                else:
+                    sys.exit('to be implemented')
                 skele = ''.join(skeleton)
                 #print(skele + '\n')
-                tmp.append(skele)    
-        skele_list.append(tmp)
+                tmp_s.append(skele)
+                tmp_c.append(clause_pair)
+
+        skele_list.append(tmp_s)
+        clause_pair_list.append(tmp_c)
     
     ## skele_list = [[sent, skele1, skele2], [sent, skele1]]]
-    return skele_list
+    return skele_list, clause_pair_list
 
 def disambiguate(skele_list):
 
@@ -64,8 +81,6 @@ def disambiguate(skele_list):
     for i,skeles in enumerate(skele_list):
         sent = skeles[0]
         skel = skeles[1:]
-
-        test_path = input_sent+'.csv'
 
         ### need separation
         
@@ -110,7 +125,7 @@ def write_results(results):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--model_path", help="model name", type=str)
-    parser.add_argument("-f", "--file_path", help="input file path", type=str, default='demo.txt')
+    parser.add_argument("-f", "--file_path", help="input file path", type=str, default='in.sents')
     args = parser.parse_args()
     model_path = args.model_path
     file_path = args.file_path
@@ -118,14 +133,13 @@ def main():
     sents = load_sents(file_path)
 
     print('###DEPENDENCY MATCHING PHASE###\n')
-    skele_list = run_matcher(sents)
+    skele_list, clause_pair_list = run_matcher(sents)
     print(skele_list)
+    print(clause_pair_list)
 
     print('###SEMANTIC DISAMBIGUATION PHASE###\n')
     print('Loading: '+str(model_path))
     load_model(model_path)
-
-
 
     '''
     results = disambiguate(skele_list)
