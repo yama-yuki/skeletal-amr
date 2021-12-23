@@ -167,6 +167,10 @@ $ python scripts/pipeline.py -m {model} -f {input_file}
 `-f`: file path for input sentences
 
 ## For Reproduction
+0. Data:
+Download [data](https://drive.google.com/drive/folders/1KPLfnLnOK_CKqqwqTeG4wDompO-tihVl?usp=sharing)
+Put it into the project directory
+
 1. Training:
 ```sh
 $ python classifier/main.py --mode train --data {data} -e {epochs} -l {learning_rate} -b {batch_size}
