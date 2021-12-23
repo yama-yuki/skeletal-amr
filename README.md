@@ -176,7 +176,7 @@ $ python scripts/pipeline.py -m {model} -f {input_file}
 ## For Reproduction
 0. Preparation:
 
-Download [data](https://drive.google.com/file/d/1ywIho-1Qn4okqvGXQnlFrSI9WpPKLxWb/view?usp=sharing), put it into the project directory, and unzip it
+Download [data](https://drive.google.com/file/d/1ocAD6nQGuYDufWVX4PCY5BRtdqWPThr5/view?usp=sharing), put it into the project directory, and unzip it
 
 1. Training:
 ```sh
