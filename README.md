@@ -150,9 +150,9 @@ conda activate skele
 pip install -r requirements.txt
 ```
 
-Download the best performing model: 
+Download the best performing model trained on full data: 
 
-- [BERT→WIKI→AMR](https://drive.google.com/file/d/1F1H8OSACNWEVXDhF2LmIzEz12lh6FlXD/view?usp=sharing)
+- [BERT→WIKI→AMR](https://drive.google.com/file/d/1R3dENG11_R3Nj9UWEBQvZPrVivFNH6f3/view?usp=sharing)
 
 Put it into `scripts/demo`
 
