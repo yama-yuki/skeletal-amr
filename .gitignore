@@ -3,3 +3,4 @@ classifier/torch_models/
 data/
 matcher/temp.conllu
 scripts/demo/
+scripts/test.py
