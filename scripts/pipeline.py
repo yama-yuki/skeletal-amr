@@ -3,15 +3,16 @@ python pipeline.py --model_path ../classifier/torch_models/WIKI-AMR/WIKI_3_3e-05
 python pipeline.py --model_path demo/model.pth --file_path demo/in.sents
 '''
 
-import argparse, os, sys
+import os
+import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+import argparse
 import csv
 import pandas as pd
 
 import torch
 from transformers import BertForSequenceClassification
-#from torch_dataloader import load_data
 from model import load_data, predict
 
 from matcher.amr_matcher import matching
@@ -21,12 +22,14 @@ if torch.cuda.is_available():
     device = torch.device("cuda")
 else:
     device = torch.device("cpu")
-model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels = 4)
-model.cuda()
+
 
 def load_model(model_path):
+    model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels = 4)
+    model.cuda()
     model.eval()
     model.load_state_dict(torch.load(model_path))
+    return model
 
 def load_sents(file_path):
     with open(file_path, mode='r', encoding='utf-8') as f:
@@ -60,7 +63,7 @@ def run_matcher(sents):
                 skele_id = id_list[matched_id]
                 print(skele_id)
                 sp = skele_id.split(".")
-                if sp[-1] == '*':
+                if sp[-1] == '*': ##if ambiguous
                     tmp_a.append(True)
                     if int(sp[0])==1:
                         ##result = (0, [['went', 'I', 'ate', 'I', 'after']], [[1, 0, 7, 6, 5]])
@@ -96,7 +99,6 @@ def run_matcher(sents):
                 #print(skele + '\n')
                 tmp_s.append(skele)
                 
-
         skele_list.append(tmp_s)
         clause_pair_list.append(tmp_c)
         amb_list.append(tmp_a)
@@ -106,53 +108,31 @@ def run_matcher(sents):
     ## amb_list = [[F, T], [T]]
     return skele_list, clause_pair_list, amb_list
 
-def disambiguate(skele_list, clause_pair_list, amb_list):
+def disambiguate(model, skele_list, clause_pair_list, amb_list):
 
     final_results = []
-    tmp_list = []
+    amb_cp_list = []
+
     for i,(skeles,clause_pair, amb) in enumerate(zip(skele_list, clause_pair_list, amb_list)):
         sent = skeles[0]
         skel = skeles[1:]
-        cp = clause_pair[0]
-        #print(skel)
-        #print(cp)
-        matrix, subord, sub = cp
-
-        tmp = [subord, matrix, sub]
-        tmp_list.append(tmp)
+        for i,s in enumerate(skel):
+            if amb[i] == True:
+                print('True')
+                amb_cp_list.append(clause_pair[0])
+            else:
+                print('False')
 
     disamb_path = 'tmp.csv'
     with open(disamb_path, 'w') as f:
         writer = csv.writer(f, delimiter='\t')
-        for tmp in tmp_list:
-            writer.writerow(tmp)
+        for amb_cp in amb_cp_list:
+            writer.writerow(amb_cp)
 
     dataloader = load_data(disamb_path, s=False, batch_size=1)
     predictions = predict(dataloader, model, device, o=True)
 
     print(predictions)
-
-    '''
-    predictions, sconj_type_list = [], []
-    for batch in dataloader:
-        batch = tuple(t.to(device) for t in batch)
-        b_input_ids, b_input_mask, b_labels, b_sconj = batch
-        with torch.no_grad():
-            outputs = model(b_input_ids, token_type_ids=None, 
-                            attention_mask=b_input_mask)
-        logits = outputs[0]
-        logits = logits.detach().cpu().numpy()
-        label_ids = b_labels.to('cpu').numpy()
-        sconj_ids = b_sconj.to('cpu').numpy()
-
-        predictions.append(logits)
-        sconj_type_list.append(sconj_ids)
-    
-        tmp = []
-        for skele in skeles:
-            tmp.append(skele)
-        final_results.append(tmp)
-    '''
     
     return final_results
 
@@ -184,9 +164,9 @@ def main():
 
     print('###SEMANTIC DISAMBIGUATION PHASE###\n')
     print('Loading: '+str(model_path))
-    load_model(model_path)
+    model = load_model(model_path)
 
-    results = disambiguate(skele_list, clause_pair_list, amb_list)
+    results = disambiguate(model, skele_list, clause_pair_list, amb_list)
 
     '''
     write_results(results)
@@ -195,4 +175,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 

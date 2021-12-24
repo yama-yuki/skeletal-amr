@@ -6,7 +6,7 @@ import torch
 from torch.utils.data import TensorDataset, DataLoader
 from transformers import BertTokenizer
 
-MAX_LEN = 128
+from common import MAX_LEN
 
 def load_data(data_path, s, batch_size=1):
 
