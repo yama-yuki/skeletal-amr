@@ -1,7 +1,7 @@
 # Dependency Matching Pipeline: Complex Sentence to Skeletal AMR
 Codes for the dependency matching pipeline presented in our \*SEM 2021 paper. This pipeline converts a complex sentence into its skeletal structure in AMR format, which may be useful in resolving semantic ambiguities of clausal relations in AMR parsing.
 
-Currently, codes for pattern matching and disambiguation experiment (train/validation) works fine, but output part is still on the way.
+**Dependency matcher and disambiguation classifier work fine when used separately. We are currently working on to combine them as a pipeline.
 
 Citation:
 - Yuki Yamamoto, Yuji Matsumoto, and Taro Watanabe. Dependency Patterns of Complex Sentences and Semantic Disambiguation for Abstract Meaning Representation Parsing. In Proceedings of the \*SEM 2021: The Tenth Joint Conference on Lexical and Computational Semantics.
