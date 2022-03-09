@@ -1,6 +1,8 @@
-from spacy.matcher import DependencyMatcher
+import itertools
 from ast import literal_eval
 from pprint import pprint
+
+from spacy.matcher import DependencyMatcher
 
 import stanza
 from spacy_stanza import StanzaLanguage
@@ -55,7 +57,6 @@ def match_result(token_list, matches, pattern_idx):
                 if matched_words:
                     matched_token.append(matched_words)
                     matched_token_id.append(matched_words_id)
-                    #print('Matched Words: '+str(matched_words))
                 count+=1
         matched_id.append(pattern_idx)#+1)
         result = (pattern_idx, matched_token, matched_token_id)
@@ -96,35 +97,6 @@ def make_copula_head(doc, token_list, copula_matched):
                 c1 = [i.i+1 for i in doc[C1].children]
                 b1 = [i.i+1 for i in doc[B1].children]
                 child_idx.append([c1,b1])
-                '''
-                if p_idx == 0:
-                    C1,B1,V2 = matched[0],matched[1],matched[3]
-                    change_idx.append([p_idx,C1+1,B1+1,V2+1])
-                    #change_idx.append([])
-                    c1 = [i.i+1 for i in doc[C1].children]
-                    b1 = [i.i+1 for i in doc[B1].children]
-                    child_idx.append([p_idx,c1,b1])
-                    #child_idx.append([[],[]])
-                elif p_idx == 1:
-                    V1,C2,B2 = matched[0],matched[2],matched[3]
-                    #change_idx.append([])
-                    change_idx.append([p_idx,C2+1,B2+1,V1+1])
-                    c2 = [i.i+1 for i in doc[C2].children]
-                    b2 = [i.i+1 for i in doc[B2].children]
-                    #child_idx.append([[],[]])
-                    child_idx.append([p_idx,c2,b2])
-                elif p_idx == 2:
-                    C1,B1,C2,B2 = matched[0],matched[1],matched[3],matched[4]
-                    change_idx.append([p_idx,C1+1,B1+1,C2+1,B2+1])
-                    #change_idx.append([C1,B1])
-                    #change_idx.append([C2,B2])
-                    c1 = [i.i+1 for i in doc[C1].children]
-                    b1 = [i.i+1 for i in doc[B1].children]
-                    c2 = [i.i+1 for i in doc[C2].children]
-                    b2 = [i.i+1 for i in doc[B2].children]
-                    child_idx.append([p_idx,c1,b1,c2,b2])
-                    #child_idx.append([c2,b2])
-                '''
 
     with open(TEMP,mode='w',encoding='utf-8') as f:
         conll = doc._.conll_str
@@ -132,7 +104,6 @@ def make_copula_head(doc, token_list, copula_matched):
     
     if change_idx != []:
         conll = convert(TEMP, change_idx, child_idx)
-        #print(conll)
         if conll:
             doc = conll_to_doc(nlp.vocab, conll)
             _, doc, token_list = process(doc)
@@ -183,81 +154,23 @@ def resolve_subset_overlap(results):
     Output:
     [(36, [['has', 'theory', 'have', 'people', 'even', 'though']], [[17, 15, 7, 6, 2, 3]])]
     '''
-    final = []
-    overlap_id = []
-    #print(results)
-    if len(results) > 1:
-        id_set = [set(result[2][0][:4]) for result in results]
-        for i,result in enumerate(results):
-            left = [i for i in id_set]
-            del left[i]
-            if set(result[2][0][:4]) in left:
-                overlap_id.append(result[0])
-            else: 
-                final.append(result)
-
-        if overlap_id:
-            pos = None
-            o = max(overlap_id)
-            for y, row in enumerate(results):
-                try:
-                    pos = (y, row.index(o))
-                    break
-                except ValueError:
-                    pass
-            
-            if pos:
-                res_id = pos[0]
-                final.append(results[res_id])
     
-    else: final = results
-    return final
+    comb = sorted(list(itertools.combinations(results, 2)))
 
-'''
-def matched_sconj(results):
-    for result in results:
-        if len(result[1][0]) == 5:
+    overlap = []
+    for pair in comb:
+        a, b = pair
+        a_id, b_id = a[0], b[0]
+        am_id, bm_id = set(a[2][0]), set(b[2][0])
+        if (a_id not in overlap) & (b_id not in overlap):
+            if am_id <= bm_id:
+                overlap.append(a)
 
-            ##sv sconj*1 sv
-            ##v1-s1-v2-s2-sconj
+    for s in overlap:
+        if s in results:
+            results.remove(s)
 
-            if sconj == result[1][0][4]:
-                matched_id = result[2][0]
-                sconj_matched.append(sconj)
-                snt_matched.append(snt_count)
-                temp.append((snt_count, input_snt, sconj, matched_id))#, doc)
-
-        elif len(result[1][0]) == 6:
-
-            ##sv sconj*2 sv
-            ##2.x.1: v1-s1-v2-s2-sconj1-sconj2
-            ##2.x.2: v1-s1-sconj1-v2-s2-sconj2
-                                 
-            if sconj in result[1][0]:
-                matched_id = result[2][0]
-                sconj = '-'.join(result[1][0][4:])
-                #print(sconj)
-                sconj_matched.append(sconj)
-                snt_matched.append(snt_count)
-                temp.append((snt_count, input_snt, sconj, matched_id))
-
-        elif len(result[1][0]) == 7:
-
-            ##sv sconj*3 sv
-            ##3.x.1: v1-s1-v2-s2-sconj1-sconj2-sconj3
-            ##3.x.2: v1-s1-sconj-v2-s2-as1-as2
-
-            if sconj in result[1][0]:
-                matched_id = result[2][0]
-                sconj = '-'.join(result[1][0][4:])
-                #print(sconj)
-                sconj_matched.append(sconj)
-                snt_matched.append(snt_count)
-                temp.append((snt_count, input_snt, sconj, matched_id))
-        
-        else: continue
-    return sconj
-'''
+    return results
 
 def matching(input_snt):
     '''
@@ -312,8 +225,6 @@ def matching(input_snt):
     ##(3) Resolve Subset Overlap
     
     results = resolve_subset_overlap(results)
-    #print(results)
-    #print('---')
     
     ##(4) Resolve Partial Overlap
 
