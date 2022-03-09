@@ -89,7 +89,7 @@ def predict(dataloader, model, device, o=True):
 
         predictions.append(logits)
         sconj_type_list.append(sconj_ids)
-    print('Prediction DONE.')
+    #print('Prediction DONE.')
 
     y_pred_multi = []
     for i in range(len(predictions)):

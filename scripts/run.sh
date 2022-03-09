@@ -16,6 +16,4 @@ skele=$(
         --file_path=${input}
 )
 
-echo ${skele}
-
 #conda deactivate

@@ -1,0 +1,22 @@
+PHASE1: DEPENDENCY MATCH
+- Loading Pattern Dictionary
+- Start Dependency Match
+[(0, [['went', 'I', 'ate', 'I', 'after']], [[1, 0, 7, 6, 5]])]
+1.1
+[(1, [['came', 'He', 'was', 'it', 'before']], [[1, 0, 5, 4, 3]]), (9, [['eating', 'I', 'was', 'I', 'as']], [[11, 9, 15, 14, 13]]), (16, [['came', 'He', 'eating', 'I', 'while']], [[1, 0, 11, 9, 8]]), (56, [['came', 'He', ',', 'eating']], [[1, 0, 7, 11]])]
+1.2
+1.10.*
+1.17.*
+0.1.*
+already matched
+[(9, [['believed', 'girl', 'seemed', 'boy', 'As']], [[8, 7, 3, 2, 0]])]
+1.10.*
+PHASE2: SEMANTIC DISAMBIGUATION
+- Loading /home/cl/yuki-yama/work/phd/v1/scripts/demo/model.pth
+[('it was noon', 'He came here', 'before'), ('I was hungry', 'while I was eating lunch as I was hungry', 'as'), ('I was eating lunch as I was hungry', 'He came here before it was noon ,', 'while'), ('-', '-', '-')]
+[('it was noon', 'He came here', 'before'), ('I was hungry', 'while I was eating lunch as I was hungry', 'as'), ('I was eating lunch as I was hungry', 'He came here before it was noon ,', 'while'), ('-', '-', '-')]
+[('the boy seemed reliable', 'the girl believed him', 'As')]
+['(v1 / V1\n    :time (a / after\n        :op1 (v2 / V2)))\n']
+['(v1 / V1\n    :time (b / before\n        :op1 (v2 / V2)))\n', '(v1 / V1\n    :time (v2 / V2))', '(v1 / V1\n    :concession (v2 / V2))']
+['(v1 / V1\n    :cause (v2 / V2))']
+- Writing Out Results

@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s: %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+            "stream": "ext://sys.stderr"
+        },
+        "info": {
+            "class": "logging.FileHandler",
+            "level": "DEBUG",
+            "filename": "log/info.log",
+            "mode": "w"
+        },
+        "blackhole": {
+            "class": "logging.NullHandler"
+        }
+    },
+    "loggers": {
+        "info": {
+            "level": "DEBUG",
+            "handlers": [
+                "info"
+            ]
+        },
+        "hoge": {
+            "handlers": [
+                "blackhole"
+            ],
+            "propagate": false
+        }
+    },
+    "root": {
+        "handlers": [
+            "console"
+        ]
+    }
+}
