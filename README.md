@@ -206,6 +206,6 @@ python classifier/main.py --mode train --data amr --target BERT-WIKI/3_2e-05_64/
 
 2. Evaluation:
 ```sh
-$ python classifier/main.py -t {trained_model}
+$ python classifier/main.py --mode test -t {trained_model}
 ```
 `-t`: choose a model to evaluate (e.g. `WIKI-AMR/WIKI_3_3e-05_64_AMR_10_3e-05_32`)
