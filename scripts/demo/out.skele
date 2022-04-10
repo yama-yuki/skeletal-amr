@@ -1,0 +1,23 @@
+#SENT I went to the park after I ate lunch.
+#SKELE0
+(v1 / V1
+    :time (a / after
+        :op1 (v2 / V2)))
+
+#SENT He came here before it was noon , while I was eating lunch as I was hungry . 
+#SKELE0
+(v1 / V1
+    :time (b / before
+        :op1 (v2 / V2)))
+#SKELE1
+(v1 / V1
+    :time (v2 / V2))
+#SKELE2
+(v1 / V1
+    :time (v2 / V2))
+
+#SENT As the boy seemed reliable, the girl believed him.
+#SKELE0
+(v1 / V1
+    :cause (v2 / V2))
+

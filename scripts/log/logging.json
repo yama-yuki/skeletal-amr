@@ -24,7 +24,7 @@
     },
     "loggers": {
         "info": {
-            "level": "DEBUG",
+            "level": "INFO",
             "handlers": [
                 "info"
             ]
