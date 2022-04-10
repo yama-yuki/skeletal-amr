@@ -4,3 +4,4 @@ data/
 matcher/temp.conllu
 scripts/demo/
 scripts/test.py
+*/__pycache__
