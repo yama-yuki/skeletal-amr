@@ -1,3 +1,5 @@
+##legacy
+
 import sys
 from ast import literal_eval
 from pprint import pprint

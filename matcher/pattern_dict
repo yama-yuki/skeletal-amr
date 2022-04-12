@@ -1,3 +1,58 @@
+# ::id 0.1.*
+# ::const (Participial) V2*, V1
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG|VBN"},"DEP":"advcl"}}]
+# ::snt Going to the well of the chamber , Mr. Panetta demanded the costs be fully counted .
+# ::amr
+(v1 / V1
+    :cause|condition|concession|time|manner (v2 / V2))
+# ::pos [v1,s1,a1,v2]
+
+# ::id 0.2.*
+# ::const (Participial) In V2*, V1
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG|VBN"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"in","TAG":"IN","DEP":"mark"}}]
+# ::snt
+# ::amr
+(v1 / V1
+    :time|condition (v2 / V2))
+# ::pos [v1,s1,a2,v2,a1]
+
+# ::id 0.3
+# ::const (Participial) On V2*, V1
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG|VBN"},"DEP":"advcl"}},
+{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"on","TAG":"IN","DEP":"mark"}}]
+# ::snt Going to the well of the chamber , Mr. Panetta demanded the costs be fully counted .
+# ::amr
+(v1 / V1
+    :time (v2 / V2))
+# ::pos [v1,s1,a2,v2,a1]
+
+# ::id 0.14
+# ::const whether
+# ::pat
+[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V|^J"}}},
+{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
+{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V|^J"},"DEP":"ccomp"}},
+{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"whether","DEP":"mark"}}]
+# ::snt Whether unanswered phone calls had any effect or not, Nasdaq stocks sank far less than those on the New York and American exchanges.
+# ::amr
+(v1 / V1
+    :ARG1 (v2 / V2)
+    :ARG1-of (r / regardless-91))
+# ::pos [v1,s1,v2,a1]
+
 # ::id 1.1
 # ::const after
 # ::pat
@@ -6,11 +61,12 @@
 {"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"},"DEP":"advcl"}},
 {"SPEC":{"NODE_NAME":"s2","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
 {"SPEC":{"NODE_NAME":"a","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"after","TAG":"IN","DEP":"mark"}}]
-# ::snt
+# ::snt After Jianguo had returned to Beijing for not even a few moths, the student movement in Tiananmen began.
 # ::amr
 (v1 / V1
     :time (a / after
         :op1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.2
 # ::const before
@@ -25,6 +81,7 @@
 (v1 / V1
     :time (b / before
         :op1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.3
 # ::const though/although/whereas
@@ -38,6 +95,7 @@
 # ::amr
 (v1 / V1
     :concession (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.4
 # ::const because/so/for
@@ -51,6 +109,7 @@
 # ::amr
 (v1 / V1
     :cause (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.5
 # ::const if
@@ -64,6 +123,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.6
 # ::const unless
@@ -78,6 +138,7 @@
 (v1 / V1
     :condition (v2 / V2
         :polarity - ))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.7
 # ::const lest
@@ -92,6 +153,7 @@
 (v1 / V1
     :purpose (v2 / V2 
         :polarity -))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.8
 # ::const once
@@ -105,6 +167,7 @@
 # ::amr
 (v1 / V1
     :time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.9.*
 # ::const since
@@ -118,6 +181,7 @@
 # ::amr
 (v1 / V1
     :cause|time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.10.*
 # ::const as
@@ -131,6 +195,7 @@
 # ::amr
 (v1 / V1
     :cause|time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.11
 # ::const till/until
@@ -145,6 +210,7 @@
 (v1 / V1
     :time (u / until
         :op1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.12.*
 # ::const when
@@ -158,6 +224,7 @@
 # ::amr
 (v1 / V1
     :condition|time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.13
 # ::const whenever/whereupon
@@ -171,6 +238,7 @@
 # ::amr
 (v1 / V1
     :time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.14
 # ::const where
@@ -184,6 +252,7 @@
 # ::amr
 (v1 / V1
     :location (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.15
 # ::const wherever
@@ -198,6 +267,7 @@
 (v1 / V1
     :location (v2 / V2)
         :mod (a / any))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.16
 # ::const whatever
@@ -211,6 +281,7 @@
 # ::amr
 (v1 / V1
     :concession (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.17.*
 # ::const while/whilst
@@ -224,6 +295,7 @@
 # ::amr
 (v1 / V1
     :time|concession (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.18
 # ::const why
@@ -238,6 +310,7 @@
 (v1 / V1
     :ARG1 (c / cause-01
         :ARG1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.19
 # ::const how
@@ -252,6 +325,7 @@
 (v1 / V1
     :ARG1 (c / cause-01
         :ARG1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.20
 # ::const that
@@ -265,6 +339,7 @@
 # ::amr
 (v1 / V1
     :ARG1 (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 1.21
 # ::const like
@@ -279,6 +354,7 @@
 (v1 / V1
     :ARG1-of (r / resemble-01)
         :ARG2 (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1]
 
 # ::id 2.1.1
 # ::const as if
@@ -294,6 +370,7 @@
 (v1 / V1
     :manner (r / resemble-01
         :ARG2 (v2 /V2)))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.2.1
 # ::const as though
@@ -308,6 +385,7 @@
 # ::amr
 (v1 / V1
     :manner (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.3.1
 # ::const in case
@@ -322,6 +400,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.4.1
 # ::const just as
@@ -337,6 +416,7 @@
 (v1 / V1
     :ARG1-of (e / equal-01
         :ARG2 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.5.1
 # ::const inasmuch/insofar as
@@ -351,6 +431,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.6.1
 # ::const even if
@@ -366,6 +447,7 @@
 (v1 / V1
     :concession (e / even-if
         :op1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.7.1
 # ::const even after
@@ -380,6 +462,7 @@
 # ::amr
 (v1 / V1
     :concession|time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.8.1
 # ::const even before
@@ -394,6 +477,7 @@
 # ::amr
 (v1 / V1
     :concession|time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.9.1
 # ::const only if/if only
@@ -412,6 +496,7 @@
 (h / have-condition-91
     :ARG1 (v1 / V1)
     :ARG2 (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.10.1
 # ::const but that
@@ -428,6 +513,7 @@
     :ARG1 (v1 / V1
         :mod (t / that))
     :ARG2 (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.11.1
 # ::const not that
@@ -443,6 +529,7 @@
 (c / contrast-01
     :ARG1 (v2 / V2 :polarity -)
     :ARG2 (v1 / V1))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.12.1
 # ::const in that/such that
@@ -457,6 +544,7 @@
 # ::amr
 (v1 / V1
     :cause (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.13.1
 # ::const except that
@@ -472,6 +560,7 @@
 (e / except-01
     :ARG1 (v2 / V2)
         :ARG1 (v1 / V1))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.14.1
 # ::const now that
@@ -487,6 +576,7 @@
 (v1 / V1
     :cause (v2 / V2
         :time (n / now)))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.15.1
 # ::const so that
@@ -501,6 +591,7 @@
 # ::amr
 (v1 / V1
     :purpose (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.16.2
 # ::const assume*/give*/grant*/provide*/see*/suppose* that
@@ -515,6 +606,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,a1,v2,s2,a2]
 
 # ::id 2.17.2.*
 # ::const consider* that
@@ -530,6 +622,7 @@
 (v1 / V1
     :cause|condition|concession (c / consider-01
         :ARG1(v2 / V2)))
+# ::pos [v1,s1,a1,v2,s2,a2]
 
 # ::id 2.18.1
 # ::const even though
@@ -544,6 +637,7 @@
 # ::amr
 (v1 / V1
     :concession (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.19.3.*
 # ::const only when
@@ -558,6 +652,7 @@
 # ::amr
 (v1 / V1
     :condition|time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 2.20.3.*
 # ::const as when
@@ -572,6 +667,7 @@
 # ::amr
 (v1 / V1
     :condition|time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2]
 
 # ::id 3.1.3
 # ::const as long as
@@ -588,6 +684,7 @@
 (v1 / V1
     :condition (a / as-long-as
         :op1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1,a2,a3]
 
 # ::id 3.2.3
 # ::const so long as
@@ -603,6 +700,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2,a3]
 
 # ::id 3.3.3
 # ::const as much as
@@ -618,6 +716,7 @@
 # ::amr
 (v1 / V1
     :concession (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2,a3]
 
 # ::id 3.4.3
 # ::const as soon as
@@ -634,6 +733,7 @@
 (v1 / V1
     :time (a / as-soon-as
         :op1 (v2 / V2)))
+# ::pos [v1,s1,v2,s2,a1,a2,a3]
 
 # ::id 3.5.3
 # ::const as far as
@@ -650,6 +750,7 @@
 (v1 / V1
     :concession (a / as-far-as
         :op1 (v2 /V2)))
+# ::pos [v1,s1,v2,s2,a1,a2,a3]
 
 # ::id 3.6.1
 # ::const if and when
@@ -665,6 +766,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2,a3]
 
 # ::id 3.7.1
 # ::const in order that
@@ -680,6 +782,7 @@
 # ::amr
 (v1 / V1
     :purpose (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,a2,a3]
 
 # ::id 3.8.3
 # ::const on condition that
@@ -695,6 +798,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,a2,v2,s2,a1,a3]
 
 # ::id 3.9.2
 # ::const for all that
@@ -710,6 +814,7 @@
 # ::amr
 (v1 / V1
     :concession (v2 / V2))
+# ::pos [v1,s1,v2,s2,a3,a1,a2]
 
 # ::id 4.1
 # ::const in the event that
@@ -726,6 +831,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,a3,v2,s2,a1,a2,a4]
 
 # ::id 4.2
 # ::const on the assumption that
@@ -742,6 +848,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,a3,v2,s2,a1,a2,a4]
 
 # ::id 4.3
 # ::const with the condition that
@@ -758,6 +865,7 @@
 # ::amr
 (v1 / V1
     :condition (v2 / V2))
+# ::pos [v1,s1,a3,v2,s2,a1,a2,a4]
 
 # ::id 4.4
 # ::const despite the fact that
@@ -774,6 +882,7 @@
 # ::amr
 (v1 / V1
     :concession (v2 / V2))
+# ::pos [v1,s1,a3,a1,v2,s2,a2,a4]
 
 # ::id 5.1
 # ::const due to the fact that
@@ -791,6 +900,7 @@
 # ::amr
 (v1 / V1
     :cause (v2 / V2))
+# ::pos [v1,s1,a4,a1,a2,v2,s2,a3,a5]
 
 # ::id 6.1
 # ::const in spite of the fact that
@@ -809,44 +919,7 @@
 # ::amr
 (v1 / V1
     :concession (v2 / V2))
-
-# ::id 0.1.*
-# ::const (Participial) V2*, V1
-# ::pat
-[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
-{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
-{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
-{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG|VBN"},"DEP":"advcl"}}]
-# ::snt Going to the well of the chamber , Mr. Panetta demanded the costs be fully counted .
-# ::amr
-(v1 / V1
-    :cause|condition|concession|time|manner (v2 / V2))
-
-# ::id 0.2.*
-# ::const (Participial) In V2*, V1
-# ::pat
-[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
-{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
-{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
-{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG|VBN"},"DEP":"advcl"}},
-{"SPEC":{"NODE_NAME":"i","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"in","TAG":"IN","DEP":"mark"}}]
-# ::snt Going to the well of the chamber , Mr. Panetta demanded the costs be fully counted .
-# ::amr
-(v1 / V1
-    :time|condition (v2 / V2))
-
-# ::id 0.3
-# ::const (Participial) On V2*, V1
-# ::pat
-[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V"}}},
-{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP":{"REGEX": "^nsubj"}}},
-{"SPEC":{"NODE_NAME":"p","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG":",","DEP":"punct"}},
-{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "VBG|VBN"},"DEP":"advcl"}},
-{"SPEC":{"NODE_NAME":"o","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"on","TAG":"IN","DEP":"mark"}}]
-# ::snt Going to the well of the chamber , Mr. Panetta demanded the costs be fully counted .
-# ::amr
-(v1 / V1
-    :time (v2 / V2))
+# ::pos [v1,s1,a5,a2,a1,a3,v2,s2,a4,a6]
 
 # ::id 0.4
 # ::const (Correrative) The X-er, the Y-er
@@ -868,6 +941,7 @@
         :ARG3-of (h2 / have-degree-91
             :ARG1 (v1 / V1)
             :ARG2 (y / Y))))
+# ::pos [v1,v2,X,t2,Y,t1]
 
 # ::id 0.5
 # ::const (Correrative) The more X, the more Y
@@ -887,6 +961,7 @@
     :ARG2 (m2 / more
         :ARG3-of (h2 / have-degree-91
             :ARG2 (y / Y))))
+# ::pos [Y,X,m2,t2,m1,t1]
 
 # ::id 0.6
 # ::const (Correrative) The more X, the Y-er
@@ -907,6 +982,7 @@
         :ARG3-of (h2 / have-degree-91
             :ARG1 (v1 / V1)
             :ARG2 (y / Y))))
+# ::pos [v1,X,m2,t2,Y,t1]
 
 # ::id 0.7
 # ::const (Correrative) The X-er, the more Y
@@ -927,6 +1003,7 @@
     :ARG2 (m2 / more
         :ARG3-of (h2 / have-degree-91
             :ARG2 (y / Y))))
+# ::pos [Y,v2,X,t2,m1,t1]
 
 # ::id 0.8
 # ::const (Correrative) no sooner ... than
@@ -944,6 +1021,7 @@
     :time (a / after
         :op1 (v2 / V2)
         :quant (i / immediate)))
+# ::pos [v1,s1,v2,s2,a2,a1,b1]
 
 # ::id 0.9
 # ::const (Correrative) more ... than
@@ -962,6 +1040,7 @@
     :ARG2 (v1 / V1)
     :ARG3 (v1 / V1)
     :ARG4 (m / more))
+# ::pos [v1,s1,v2,s2,a2,a1,b1]
 
 # ::id 0.10
 # ::const (Correrative) less ... than
@@ -980,6 +1059,7 @@
     :ARG2 (v1 / V1)
     :ARG3 (v1 / V1)
     :ARG4 (l / less))
+# ::pos [v1,s1,v2,s2,a2,a1,b1]
 
 # ::id 0.11
 # ::const (Correrative) barely ... when
@@ -994,6 +1074,7 @@
 # ::amr
 (v1 / V1
     :time (v2 / V2))
+# ::pos [v1,s1,v2,s2,a1,b1]
 
 # ::id 0.12
 # ::const (Correrative) rather than
@@ -1008,6 +1089,7 @@
 (i / instead-of-91
     :ARG1 (v1 / V1)
     :ARG2 (v2 / V2))
+# ::pos [v1,s1,v2,a1,a2]
 
 # ::id 0.13
 # ::const (Correrative) whether/if ... or
@@ -1022,17 +1104,5 @@
 (v1 / V1
     :ARG1 (v2 / V2)
     :ARG1-of (r / regardless-91))
-
-# ::id 0.14
-# ::const whether
-# ::pat
-[{"SPEC":{"NODE_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V|^J"}}},
-{"SPEC":{"NODE_NAME":"s1","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"DEP": {"REGEX": "^nsubj"}}},
-{"SPEC":{"NODE_NAME":"v2","NBOR_RELOP":">","NBOR_NAME":"v1"},"PATTERN":{"TAG": {"REGEX": "^V|^J"},"DEP":"ccomp"}},
-{"SPEC":{"NODE_NAME":"w","NBOR_RELOP":">","NBOR_NAME":"v2"},"PATTERN":{"lemma":"whether","DEP":"mark"}}]
-# ::snt Whether unanswered phone calls had any effect or not, Nasdaq stocks sank far less than those on the New York and American exchanges.
-# ::amr
-(v1 / V1
-    :ARG1 (v2 / V2)
-    :ARG1-of (r / regardless-91))
+# ::pos [v1,s1,v2,a1,b1]
 

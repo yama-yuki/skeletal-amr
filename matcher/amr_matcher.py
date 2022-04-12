@@ -1,34 +1,32 @@
 import itertools
+import os
+import sys
 from ast import literal_eval
 from pprint import pprint
 
 from spacy.matcher import DependencyMatcher
-
-import stanza
-from spacy_stanza import StanzaLanguage
+from spacy.tokens import Doc
 from spacy_conll import init_parser, ConllFormatter
+from spacy_stanza import StanzaLanguage
 
-from .pattern_loader import pattern_datum_list, create_list
-from .conll_load import convert, conll_to_doc, process, conll_data
+import logging
+from logging import getLogger, StreamHandler, Formatter
+info_logger = getLogger('info.test').getChild('sub')
 
-#stanza.download("en")
+from .pattern_loader import pattern_entry_list, create_list, wo_nsubj
+from .conll_load import conll_list_to_doc, convert
+
+
+this_dir, this_filename = os.path.split(__file__)
+TEMP = os.path.join(this_dir, 'temp.conllu')
+
 nlp = init_parser("stanza",
                   "en",
                   parser_opts={"use_gpu": True, "verbose": False},
                   include_headers=True)
 
-import os
-this_dir, this_filename = os.path.split(__file__)
-TEMP = os.path.join(this_dir, 'temp.conllu')
-
-copula_matched = []
-
-def init():
-    global copula_matched
-    copula_matched = []
-    return
-
 def pipeline(input_snt):
+
     text = input_snt
     doc = nlp(text)
     token_list=[]
@@ -39,15 +37,16 @@ def pipeline(input_snt):
     return text, doc, token_list
 
 def tree_match(doc, pattern):
+
     matcher = DependencyMatcher(nlp.vocab)
     matcher.add('pattern_dict', None, pattern)
     matches = matcher(doc)
+
     return matches
 
 def match_result(token_list, matches, pattern_idx):
-    matched_id = []
-    matched_token = []
-    matched_token_id = []
+
+    matched_id, matched_token, matched_token_id = [], [], []
     if matches[0][1] != []:
         for match_idx, token_idx in matches:
             count=0
@@ -61,93 +60,35 @@ def match_result(token_list, matches, pattern_idx):
         matched_id.append(pattern_idx)#+1)
         result = (pattern_idx, matched_token, matched_token_id)
         return result
+
     return
 
-def copula_result(token_list, matches,pattern_idx):
-    matched = []
-    matched_id = []
-    if matches[0][1] != []:
-        for match_id, token_idx in matches:
-            count=0
-            for i in token_idx:
-                matched.append(i)
-                #i = sorted(i)
-                matched_words = [token_list[j] for j in i]
-                #print('Matched Words: '+str(matched_words))
-                count+=1
-        matched_id.append(pattern_idx+1)
-    copula_matched.append(matched)
-    return matched_id
-
-def make_copula_head(doc, token_list, copula_matched):
-    '''
-    (1)
-    Find Copula Dependent Structure
-    Convert to Copula Head Structure
-
-    Convert stanza parse tree to CONLL
-    '''
-    change_idx,child_idx = [],[]
-    #V1 = None
-    for p_idx in range(len(copula_matched)):
-        if copula_matched[p_idx] != []:
-            for matched in copula_matched[p_idx]:
-                C1,B1 = matched[0],matched[1]
-                change_idx.append([C1+1,B1+1])
-                c1 = [i.i+1 for i in doc[C1].children]
-                b1 = [i.i+1 for i in doc[B1].children]
-                child_idx.append([c1,b1])
-
-    with open(TEMP,mode='w',encoding='utf-8') as f:
-        conll = doc._.conll_str
-        f.write(conll)
-    
-    if change_idx != []:
-        conll = convert(TEMP, change_idx, child_idx)
-        if conll:
-            doc = conll_to_doc(nlp.vocab, conll)
-            _, doc, token_list = process(doc)
-            #for token in doc:
-                #print(token.i, token.text, token.lemma_, token.pos_, token.tag_, token.head.i, token.dep_, token.head.text)
-    else:
-        conll_snt=[]
-        with open(TEMP, mode='r', encoding='utf-8') as d:
-            lines = d.readlines()
-            for line in lines:
-                if line[0] != '#' and line[0] != '\n':
-                    conll_snt.append(line.rstrip('\n').split('\t'))
-        conll = conll_snt
-    return doc, token_list, conll
-
-def total_result(id_list, const_list, matched_id, p_count):
-    mp_id = [id_list[i-1] for i in matched_id]
-    #print('Matched Pattern_ID: '+str(mp_id))
-    mp = [const_list[i-1] for i in matched_id]
-    if mp != []:
-        #print('Matched Patterns: '+str(mp))
-        return
-    return mp_id, mp
-
-def pattern_matcher(doc, token_list, pattern, pattern_list, mode='copula'):
+def pattern_matcher(doc, token_list, pattern, pattern_list, mode='copula', subj=False):
     '''
     (2)
     Dependency Matcher
     '''
     pattern_dict = literal_eval(pattern)
+    if subj == False:
+        pattern_dict = wo_nsubj(pattern_dict)
     pattern_idx = pattern_list.index(pattern)
     if mode == 'copula':
         matches = tree_match(doc, pattern_dict)
         matched_token_idx = copula_result(token_list,matches,pattern_idx)
-        return
-    else:
+        return matches, matched_token_idx
+    
+    elif mode == 'complex':
         matches = tree_match(doc, pattern_dict)
         result = match_result(token_list,matches,pattern_idx)
         return result
 
+    else:
+        sys.exit('Need to specify mode for pattern_matcher()')
+
 def resolve_subset_overlap(results):
     '''
     (3)
-    Resolve Subset Overlapping Patterns
+    Resolve Overlapping Patterns
     Input:
     [(2, [['has', 'theory', 'have', 'people', 'though']], [[17, 15, 7, 6, 3]]),
     (36, [['has', 'theory', 'have', 'people', 'even', 'though']], [[17, 15, 7, 6, 2, 3]])]
@@ -160,10 +101,14 @@ def resolve_subset_overlap(results):
     overlap = []
     for pair in comb:
         a, b = pair
-        a_id, b_id = a[0], b[0]
-        am_id, bm_id = set(a[2][0]), set(b[2][0])
+        a_id, b_id = a[0], b[0] #2
+        am_id, bm_id = set(a[2][0]), set(b[2][0]) #{17, 15, 7, 6, 3}
         if (a_id not in overlap) & (b_id not in overlap):
+            '''
             if am_id <= bm_id:
+                overlap.append(a)
+            '''
+            if len((am_id&bm_id)) >= 2:
                 overlap.append(a)
 
     for s in overlap:
@@ -171,6 +116,56 @@ def resolve_subset_overlap(results):
             results.remove(s)
 
     return results
+
+def doc_to_conll(doc):
+    ##doc to conll
+    conll = [list(map(str, [token.i+1, token.text, token.lemma_, token.pos_, token.tag_, '_',
+                token.head.i+1, token.dep_, '_', '_'])) for token in doc]
+    
+    ##token.head.i -> 0 if token.head is root
+    for col in conll:
+        if col[0] == col[6]:
+            col[6] = '0'
+
+    return conll
+
+def copula_result(token_list, matches, pattern_idx):
+
+    matched = []
+    matched_id = []
+    if matches[0][1] != []:
+        for match_id, token_idx in matches:
+            for i,t_i in enumerate(token_idx):
+                matched.append(t_i)
+                matched_words = [token_list[j] for j in t_i]
+                #print('Matched Words: '+str(matched_words))
+        matched_id.append(pattern_idx+1)
+    #copula_matched.append(matched)
+    return matched_id
+
+def cop_conv(doc):
+    '''
+    (1)
+    Find Copula Dependent Structure
+    Convert to Copula Head Structure
+    Convert stanza parse tree to CONLL
+    '''
+
+    token_list = [token.text for token in doc]
+    
+    pattern_path = os.path.join(this_dir,'copula_patterns')
+    entry_list = pattern_entry_list(pattern_path)
+    _, _, copula_list, _, _ = create_list(entry_list)
+    matches, _ = pattern_matcher(doc, token_list, copula_list[0], copula_list, 'copula')
+    #info_logger.info(matches)
+    
+    conll = doc_to_conll(doc) # [[1, a, a, ...],[]]
+
+    if matches[0][1]:
+        conll = convert(conll, matches[0][1])
+        doc = conll_list_to_doc(nlp.vocab, conll)
+
+    return doc, token_list, conll
 
 def matching(input_snt):
     '''
@@ -185,22 +180,16 @@ def matching(input_snt):
 
     matched_id_list = []
     p_count=0
-    data = os.path.join(this_dir, 'copula_patterns')
-    datum_list = pattern_datum_list(data)
-    _, _, copula_list, _ = create_list(datum_list)
-    for pattern in copula_list:
-        if pattern != '':
-            p_count+=1
-            pattern_matcher(doc, token_list, pattern, copula_list)
-    doc, token_list, conll = make_copula_head(doc, token_list, copula_matched)
+
+    doc, token_list, conll = cop_conv(doc)
 
     ##(2) Dependency Match
 
     results = []
     p_count=0
-    data = os.path.join(this_dir, 'pattern_dict')
-    datum_list = pattern_datum_list(data)
-    id_list, const_list, pattern_list, amr_list = create_list(datum_list)
+    pattern_path = os.path.join(this_dir, 'pattern_dict')
+    entry_list = pattern_entry_list(pattern_path)
+    id_list, const_list, pattern_list, amr_list, _ = create_list(entry_list)
     ## id_list: ['1.1', '1.2', '1.3', ...]
     for pattern in pattern_list:
         if pattern != '':
@@ -209,9 +198,6 @@ def matching(input_snt):
             ## result: (pattern_idx, matched_token, matched_token_id)
             if result:
                 results.append(result)
-    #total_result(id_list, const_list, matched_id_list, p_count)
-    #conll = doc._.conll_str
-    init()
 
     ##############################################################################################################
     ## Single Match
@@ -224,9 +210,8 @@ def matching(input_snt):
 
     ##(3) Resolve Subset Overlap
     
-    results = resolve_subset_overlap(results)
-    
-    ##(4) Resolve Partial Overlap
+    if len(results) > 1:
+        results = resolve_subset_overlap(results)
 
     return results, doc, conll, id_list
 
