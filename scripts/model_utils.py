@@ -15,7 +15,7 @@ def load_data(data_path, s, batch_size=1):
     matrix = df['MATRIX'].values
     sconj = df['SCONJ'].values
 
-    sconj_t = [sconj_type(s.lower()) for s in sconj]
+    sconj_t = [_sconj_type(s.lower()) for s in sconj]
 
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
 
@@ -48,7 +48,7 @@ def load_data(data_path, s, batch_size=1):
     return dataloader
 
 ## For restricting softmax
-def sconj_type(sconj):
+def _sconj_type(sconj):
     if sconj in {'since','as'}:
         sconj_t = 1
     elif sconj == 'while' or sconj == 'whilst':
@@ -58,7 +58,7 @@ def sconj_type(sconj):
     else: sconj_t = 0
     return sconj_t
 
-def restrict(s_max, sconj_type):
+def _restrict(s_max, sconj_type):
     new_s_max= s_max
     if int(sconj_type) == 1: ##since,as
         new_s_max[0][1] = 0 #cond=0
@@ -95,7 +95,7 @@ def predict(dataloader, model, device, o=True):
     for i in range(len(predictions)):
         s_max = softmax(predictions[i])
         if o == True:
-            s_max = restrict(s_max, int(sconj_type_list[i][0]))
+            s_max = _restrict(s_max, int(sconj_type_list[i][0]))
         #print(s_max)
         pred_labels_i = np.argmax(s_max, axis=1).flatten()#predictions[i]
         y_pred_multi.append(pred_labels_i[0])

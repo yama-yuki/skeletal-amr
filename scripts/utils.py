@@ -191,12 +191,6 @@ def build_skeltree(pos_list, v_list):
 
     return stree
 
-def make_input_multi(doc, stree, matv_i, subv_i):
-    '''
-    
-    '''
-    pass
-
 def _process_toks(toks):
     #toks_str = [t.text for t in toks]
     if toks[0] == ',':
@@ -238,8 +232,6 @@ if __name__ == '__main__':
     for d in range(max_d+1):
         print(d,dep2node[d])
         childs = dep2node[d]
-
-
 
     #print(build_skeltree(pos_list, v_list))
 

@@ -58,6 +58,11 @@ class DepMatch:
         self.results_cls = []
 
 def run_matcher(sents):
+    '''
+    dependency matching with ../matcher/amr_matcher.py
+    '''
+
+    ##init matcher
     info_logger.info('- Loading Pattern Dictionary')
 
     pd_path = '../matcher/pattern_dict'
@@ -68,16 +73,15 @@ def run_matcher(sents):
     positions = find_matched_pos(pos_list)
 
     info_logger.debug(positions)
-    info_logger.info('- Start Dependency Match')
-
-    conll_list = []
-    ##result = [doc, [skele1, skele2], [(SUB, MAT, SCONJ), (SUB, MAT, SCONJ)], [F, T]]
 
     def id2tok(doc):
         result = {token.i: token for token in doc}
         return result
+    
+    ## run dependency matcher
+    info_logger.info('- Start Dependency Match')
 
-    d_list = []
+    d_list, conll_list = [], []
     for sent in sents:
         results, doc, conll, _ = matching(sent)
         depm = DepMatch(doc)
@@ -85,7 +89,7 @@ def run_matcher(sents):
         info_logger.debug(len(results))
         #info_logger.info(results)
 
-        if results:
+        if results: #result = [doc, [skele1, skele2], [(SUB, MAT, SCONJ), (SUB, MAT, SCONJ)], [F, T]]
             conll_list.append(conll)
 
             clauses = split_clause(results, positions, doc)
@@ -98,12 +102,13 @@ def run_matcher(sents):
                 tree_match_id = result[2][0]
                 pos_id = positions[matched_id] #[0, 2, [3, 1], []]
 
-                #info_logger.debug(const_list[matched_id])
-                #info_logger.debug(skeleton)
-                #info_logger.debug(tree_match_id)
-                #info_logger.debug(pos_id)
+                ## logs for debugging
+                info_logger.debug(const_list[matched_id])
+                info_logger.debug(skeleton)
+                info_logger.debug(tree_match_id)
+                info_logger.debug(pos_id)
 
-                ## if ambiguous
+                ## if ambiguous sconj
                 if sp[-1] == '*': 
                     info_logger.debug('ambiguous')
                     depm.ambs.append(True)
@@ -119,6 +124,7 @@ def run_matcher(sents):
                     info_logger.debug([matv_i,subv_i,sc_i]) #[8, 3, [0]]
 
                     '''
+                    legacy
                     if matv_i < subv_i:
                         info_logger.debug('mat < sub')
                         ##result = (0, [['went', 'I', 'ate', 'I', 'after']], [[1, 0, 7, 6, 5]])
@@ -136,7 +142,7 @@ def run_matcher(sents):
                         depm.clauses.append(clause_pair)
                         info_logger.debug(clause_pair)
 
-                ## if not ambiguous
+                ## if not ambiguous sconj
                 else:
                     info_logger.debug('not ambiguous')
                     depm.ambs.append(False)
@@ -150,14 +156,17 @@ def run_matcher(sents):
     return d_list
 
 def disambiguate(model, d_list):
+    '''
+    semantic disambiguation with a fine-tuned model
+    '''
 
-    ## make input
+    ## make input for classifier
     amb_cp_list = []
     for depm in d_list:
-        for j,amb in enumerate(depm.ambs):
+        for i,amb in enumerate(depm.ambs):
             if amb == True:
                 info_logger.debug(depm.clauses)
-                amb_cp_list.append(depm.clauses[j])
+                amb_cp_list.append(depm.clauses[i])
 
     disamb_path = 'tmp.csv'
     with open(disamb_path, 'w') as f:
@@ -165,7 +174,7 @@ def disambiguate(model, d_list):
         for amb_cp in amb_cp_list:
             writer.writerow(amb_cp)
 
-    ## classify
+    ## classify roles
     dataloader = load_data(disamb_path, s=False, batch_size=1)
     predictions = predict(dataloader, model, device, o=True)
     
@@ -189,6 +198,7 @@ def disambiguate(model, d_list):
             else:
                 continue
 
+    os.remove(disamb_path)
     return d_list
 
 def write_results(d_list, out_path):

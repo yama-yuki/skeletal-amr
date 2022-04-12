@@ -101,6 +101,8 @@ class SkelTree:
     def __repr__(self):
         return f"Tree({self.pos_list}): {self.tree}"
 
+'''
+legacy
 class Edge:
     def __init__ (self, parent, child, label=None):
         self.parent = parent
@@ -127,4 +129,5 @@ class Tree:
         for e in self.edge:
             res += "\n" + str(e.parent) + " " + str(e.child)
         return res
+'''
 
